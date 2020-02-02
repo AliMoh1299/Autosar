@@ -27,7 +27,6 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .data.heart    0x00000000        0x8 main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
@@ -436,29 +435,29 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x14ae
+.debug_info     0x00000000     0x1485
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.346/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x30e dio.o
  .debug_info    0x000007f4      0x26a dio_cfg.o
  .debug_info    0x00000a5e      0x7b8 lcd.o
- .debug_info    0x00001216      0x298 main.o
+ .debug_info    0x00001216      0x26f main.o
 
-.debug_abbrev   0x00000000      0x91e
+.debug_abbrev   0x00000000      0x8fb
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.346/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_abbrev  0x000004a3       0xf3 dio.o
  .debug_abbrev  0x00000596       0xe7 dio_cfg.o
  .debug_abbrev  0x0000067d      0x164 lcd.o
- .debug_abbrev  0x000007e1      0x13d main.o
+ .debug_abbrev  0x000007e1      0x11a main.o
 
-.debug_line     0x00000000      0x86d
+.debug_line     0x00000000      0x86b
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.346/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_line    0x00000116      0x1d5 dio.o
  .debug_line    0x000002eb       0xfb dio_cfg.o
  .debug_line    0x000003e6      0x2f5 lcd.o
- .debug_line    0x000006db      0x192 main.o
+ .debug_line    0x000006db      0x190 main.o
 
 .debug_frame    0x00000000      0x13c
  *(.debug_frame)
@@ -467,17 +466,17 @@ END GROUP
  .debug_frame   0x00000088       0x90 lcd.o
  .debug_frame   0x00000118       0x24 main.o
 
-.debug_str      0x00000000      0x6c0
+.debug_str      0x00000000      0x6df
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.346/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x3f0 dio.o
                                 0x402 (size before relaxing)
  .debug_str     0x00000586       0x72 dio_cfg.o
                                 0x3e7 (size before relaxing)
- .debug_str     0x000005f8       0xb1 lcd.o
-                                0x43d (size before relaxing)
- .debug_str     0x000006a9       0x17 main.o
-                                0x1ec (size before relaxing)
+ .debug_str     0x000005f8       0xd6 lcd.o
+                                0x443 (size before relaxing)
+ .debug_str     0x000006ce       0x11 main.o
+                                0x1e3 (size before relaxing)
 
 .debug_loc      0x00000000      0xb28
  *(.debug_loc)

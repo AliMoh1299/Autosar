@@ -13,19 +13,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 000000c8  00000000  00000000  00000618  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000014ae  00000000  00000000  000006e0  2**0
+  5 .debug_info   00001485  00000000  00000000  000006e0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000091e  00000000  00000000  00001b8e  2**0
+  6 .debug_abbrev 000008fb  00000000  00000000  00001b65  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000086d  00000000  00000000  000024ac  2**0
+  7 .debug_line   0000086b  00000000  00000000  00002460  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  0000013c  00000000  00000000  00002d1c  2**2
+  8 .debug_frame  0000013c  00000000  00000000  00002ccc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000006c0  00000000  00000000  00002e58  2**0
+  9 .debug_str    000006df  00000000  00000000  00002e08  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000b28  00000000  00000000  00003518  2**0
+ 10 .debug_loc    00000b28  00000000  00000000  000034e7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000088  00000000  00000000  00004040  2**0
+ 11 .debug_ranges 00000088  00000000  00000000  0000400f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -80,12 +80,6 @@ Disassembly of section .text:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000082 <Dio_WritePort>:
-#include "STD_Types.h"
-#include "bit_math.h"
-
-void Dio_WritePort(Dio_PortType portx,uint8 uxvalue)
-{
-	switch (portx)
   82:	81 30       	cpi	r24, 0x01	; 1
   84:	41 f0       	breq	.+16     	; 0x96 <Dio_WritePort+0x14>
   86:	28 f0       	brcs	.+10     	; 0x92 <Dio_WritePort+0x10>
@@ -94,42 +88,18 @@ void Dio_WritePort(Dio_PortType portx,uint8 uxvalue)
   8c:	83 30       	cpi	r24, 0x03	; 3
   8e:	39 f0       	breq	.+14     	; 0x9e <Dio_WritePort+0x1c>
   90:	08 95       	ret
-	{
-		case Dio_Port_A :
-		PORTA_REG=uxvalue;
   92:	6b bb       	out	0x1b, r22	; 27
-		break;
   94:	08 95       	ret
-		
-		case Dio_Port_B :
-		PORTB_REG=uxvalue;
   96:	68 bb       	out	0x18, r22	; 24
-		break;
   98:	08 95       	ret
-		
-		case Dio_Port_C :
-		PORTC_REG=uxvalue;
   9a:	65 bb       	out	0x15, r22	; 21
-		break;
   9c:	08 95       	ret
-		
-		case Dio_Port_D :
-		PORTD_REG=uxvalue;
   9e:	62 bb       	out	0x12, r22	; 18
   a0:	08 95       	ret
 
 000000a2 <Dio_WriteChannel>:
-}
-
-void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
-{
-			Dio_PortType channel_port=channel/8;     // Determine Port A,B,C,D
-			Dio_ChannelType ChannelPos =channel%8;  //Determine Which Pin In Port A,B,C,D
   a2:	98 2f       	mov	r25, r24
   a4:	97 70       	andi	r25, 0x07	; 7
-
-	
-	switch(channel_port){
   a6:	86 95       	lsr	r24
   a8:	86 95       	lsr	r24
   aa:	86 95       	lsr	r24
@@ -142,12 +112,8 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
   b8:	09 f4       	brne	.+2      	; 0xbc <Dio_WriteChannel+0x1a>
   ba:	58 c0       	rjmp	.+176    	; 0x16c <Dio_WriteChannel+0xca>
   bc:	08 95       	ret
-		case Dio_Port_A:
-		if(level == STD_low)
   be:	61 11       	cpse	r22, r1
   c0:	0e c0       	rjmp	.+28     	; 0xde <Dio_WriteChannel+0x3c>
-		{
-			CLR_BIT(PORTA_REG,ChannelPos );
   c2:	4b b3       	in	r20, 0x1b	; 27
   c4:	21 e0       	ldi	r18, 0x01	; 1
   c6:	30 e0       	ldi	r19, 0x00	; 0
@@ -162,10 +128,6 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
   d8:	84 23       	and	r24, r20
   da:	8b bb       	out	0x1b, r24	; 27
   dc:	08 95       	ret
-		}
-		else
-		{
-			SET_BIT(PORTA_REG,ChannelPos );
   de:	4b b3       	in	r20, 0x1b	; 27
   e0:	21 e0       	ldi	r18, 0x01	; 1
   e2:	30 e0       	ldi	r19, 0x00	; 0
@@ -179,14 +141,8 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
   f2:	84 2b       	or	r24, r20
   f4:	8b bb       	out	0x1b, r24	; 27
   f6:	08 95       	ret
-		}
-		break;
-		case Dio_Port_B:
-		if(level == STD_low)
   f8:	61 11       	cpse	r22, r1
   fa:	0e c0       	rjmp	.+28     	; 0x118 <Dio_WriteChannel+0x76>
-		{
-			CLR_BIT(PORTB_REG,ChannelPos );
   fc:	48 b3       	in	r20, 0x18	; 24
   fe:	21 e0       	ldi	r18, 0x01	; 1
  100:	30 e0       	ldi	r19, 0x00	; 0
@@ -201,10 +157,6 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  112:	84 23       	and	r24, r20
  114:	88 bb       	out	0x18, r24	; 24
  116:	08 95       	ret
-		}
-		else
-		{
-			SET_BIT(PORTB_REG,ChannelPos );
  118:	48 b3       	in	r20, 0x18	; 24
  11a:	21 e0       	ldi	r18, 0x01	; 1
  11c:	30 e0       	ldi	r19, 0x00	; 0
@@ -218,14 +170,8 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  12c:	84 2b       	or	r24, r20
  12e:	88 bb       	out	0x18, r24	; 24
  130:	08 95       	ret
-		}
-		break;
-		case Dio_Port_C:
-		if(level == STD_low)
  132:	61 11       	cpse	r22, r1
  134:	0e c0       	rjmp	.+28     	; 0x152 <Dio_WriteChannel+0xb0>
-		{
-			CLR_BIT(PORTC_REG,ChannelPos );
  136:	45 b3       	in	r20, 0x15	; 21
  138:	21 e0       	ldi	r18, 0x01	; 1
  13a:	30 e0       	ldi	r19, 0x00	; 0
@@ -240,10 +186,6 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  14c:	84 23       	and	r24, r20
  14e:	85 bb       	out	0x15, r24	; 21
  150:	08 95       	ret
-		}
-		else
-		{
-			SET_BIT(PORTC_REG,ChannelPos );
  152:	45 b3       	in	r20, 0x15	; 21
  154:	21 e0       	ldi	r18, 0x01	; 1
  156:	30 e0       	ldi	r19, 0x00	; 0
@@ -257,14 +199,8 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  166:	84 2b       	or	r24, r20
  168:	85 bb       	out	0x15, r24	; 21
  16a:	08 95       	ret
-		}
-		break;
-		case Dio_Port_D:
-		if(level == STD_low)
  16c:	61 11       	cpse	r22, r1
  16e:	0e c0       	rjmp	.+28     	; 0x18c <Dio_WriteChannel+0xea>
-		{
-			CLR_BIT(PORTD_REG,ChannelPos );
  170:	42 b3       	in	r20, 0x12	; 18
  172:	21 e0       	ldi	r18, 0x01	; 1
  174:	30 e0       	ldi	r19, 0x00	; 0
@@ -279,10 +215,6 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  186:	84 23       	and	r24, r20
  188:	82 bb       	out	0x12, r24	; 18
  18a:	08 95       	ret
-		}
-		else
-		{
-			SET_BIT(PORTD_REG,ChannelPos );
  18c:	42 b3       	in	r20, 0x12	; 18
  18e:	21 e0       	ldi	r18, 0x01	; 1
  190:	30 e0       	ldi	r19, 0x00	; 0
@@ -298,43 +230,20 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  1a4:	08 95       	ret
 
 000001a6 <Dio_init>:
-	/*PD6*/		{Output,STD_low},
-	/*PD7*/		{Output,STD_low},
-};
-
-void Dio_init()
-{
  1a6:	e0 e6       	ldi	r30, 0x60	; 96
  1a8:	f0 e0       	ldi	r31, 0x00	; 0
-	for (uint8 i =Dio_Channel_A0;i<PINNUM;i++)
  1aa:	80 e0       	ldi	r24, 0x00	; 0
-			{
-				case Dio_Port_A:
-				CLR_BIT(DDRA_REG,channelPos);
-				break;
-				case Dio_Port_B:
-				CLR_BIT(DDRB_REG,channelPos);
  1ac:	41 e0       	ldi	r20, 0x01	; 1
  1ae:	50 e0       	ldi	r21, 0x00	; 0
-void Dio_init()
-{
-	for (uint8 i =Dio_Channel_A0;i<PINNUM;i++)
-	{
-		
-	  Dio_PortType channel_port=i/8;
  1b0:	98 2f       	mov	r25, r24
  1b2:	96 95       	lsr	r25
  1b4:	96 95       	lsr	r25
  1b6:	96 95       	lsr	r25
-   	  Dio_ChannelType channelPos=i%8;		
  1b8:	38 2f       	mov	r19, r24
  1ba:	37 70       	andi	r19, 0x07	; 7
-	if(Dio_pin_config[i].pinDirection ==Output)
  1bc:	20 81       	ld	r18, Z
  1be:	21 30       	cpi	r18, 0x01	; 1
  1c0:	a1 f5       	brne	.+104    	; 0x22a <Dio_init+0x84>
-	{
-		switch(channel_port)
  1c2:	91 30       	cpi	r25, 0x01	; 1
  1c4:	89 f0       	breq	.+34     	; 0x1e8 <Dio_init+0x42>
  1c6:	28 f0       	brcs	.+10     	; 0x1d2 <Dio_init+0x2c>
@@ -343,9 +252,6 @@ void Dio_init()
  1cc:	93 30       	cpi	r25, 0x03	; 3
  1ce:	11 f1       	breq	.+68     	; 0x214 <Dio_init+0x6e>
  1d0:	63 c0       	rjmp	.+198    	; 0x298 <Dio_init+0xf2>
-	{
-		case Dio_Port_A:
-		SET_BIT(DDRA_REG,channelPos);
  1d2:	9a b3       	in	r25, 0x1a	; 26
  1d4:	ba 01       	movw	r22, r20
  1d6:	02 c0       	rjmp	.+4      	; 0x1dc <Dio_init+0x36>
@@ -356,10 +262,7 @@ void Dio_init()
  1e0:	9b 01       	movw	r18, r22
  1e2:	29 2b       	or	r18, r25
  1e4:	2a bb       	out	0x1a, r18	; 26
-		break;
  1e6:	58 c0       	rjmp	.+176    	; 0x298 <Dio_init+0xf2>
-		case Dio_Port_B:
-		SET_BIT(DDRB_REG,channelPos);
  1e8:	97 b3       	in	r25, 0x17	; 23
  1ea:	ba 01       	movw	r22, r20
  1ec:	02 c0       	rjmp	.+4      	; 0x1f2 <Dio_init+0x4c>
@@ -370,10 +273,7 @@ void Dio_init()
  1f6:	9b 01       	movw	r18, r22
  1f8:	29 2b       	or	r18, r25
  1fa:	27 bb       	out	0x17, r18	; 23
-		break;
  1fc:	4d c0       	rjmp	.+154    	; 0x298 <Dio_init+0xf2>
-		case Dio_Port_C:
-		SET_BIT(DDRC_REG,channelPos);
  1fe:	94 b3       	in	r25, 0x14	; 20
  200:	ba 01       	movw	r22, r20
  202:	02 c0       	rjmp	.+4      	; 0x208 <Dio_init+0x62>
@@ -384,10 +284,7 @@ void Dio_init()
  20c:	9b 01       	movw	r18, r22
  20e:	29 2b       	or	r18, r25
  210:	24 bb       	out	0x14, r18	; 20
-		break;
  212:	42 c0       	rjmp	.+132    	; 0x298 <Dio_init+0xf2>
-		case Dio_Port_D:
-		SET_BIT(DDRD_REG,channelPos);
  214:	91 b3       	in	r25, 0x11	; 17
  216:	ba 01       	movw	r22, r20
  218:	02 c0       	rjmp	.+4      	; 0x21e <Dio_init+0x78>
@@ -398,13 +295,7 @@ void Dio_init()
  222:	9b 01       	movw	r18, r22
  224:	29 2b       	or	r18, r25
  226:	21 bb       	out	0x11, r18	; 17
-		break;
  228:	37 c0       	rjmp	.+110    	; 0x298 <Dio_init+0xf2>
-	}
-		}
-		else
-		{
-			switch (channel_port)
  22a:	91 30       	cpi	r25, 0x01	; 1
  22c:	91 f0       	breq	.+36     	; 0x252 <Dio_init+0xac>
  22e:	28 f0       	brcs	.+10     	; 0x23a <Dio_init+0x94>
@@ -413,9 +304,6 @@ void Dio_init()
  234:	93 30       	cpi	r25, 0x03	; 3
  236:	29 f1       	breq	.+74     	; 0x282 <Dio_init+0xdc>
  238:	2f c0       	rjmp	.+94     	; 0x298 <Dio_init+0xf2>
-			{
-				case Dio_Port_A:
-				CLR_BIT(DDRA_REG,channelPos);
  23a:	2a b3       	in	r18, 0x1a	; 26
  23c:	ba 01       	movw	r22, r20
  23e:	02 c0       	rjmp	.+4      	; 0x244 <Dio_init+0x9e>
@@ -427,10 +315,7 @@ void Dio_init()
  24a:	90 95       	com	r25
  24c:	92 23       	and	r25, r18
  24e:	9a bb       	out	0x1a, r25	; 26
-				break;
  250:	23 c0       	rjmp	.+70     	; 0x298 <Dio_init+0xf2>
-				case Dio_Port_B:
-				CLR_BIT(DDRB_REG,channelPos);
  252:	27 b3       	in	r18, 0x17	; 23
  254:	ba 01       	movw	r22, r20
  256:	02 c0       	rjmp	.+4      	; 0x25c <Dio_init+0xb6>
@@ -442,10 +327,7 @@ void Dio_init()
  262:	90 95       	com	r25
  264:	92 23       	and	r25, r18
  266:	97 bb       	out	0x17, r25	; 23
-				break;
  268:	17 c0       	rjmp	.+46     	; 0x298 <Dio_init+0xf2>
-				case Dio_Port_C:
-				CLR_BIT(DDRC_REG,channelPos);
  26a:	24 b3       	in	r18, 0x14	; 20
  26c:	ba 01       	movw	r22, r20
  26e:	02 c0       	rjmp	.+4      	; 0x274 <Dio_init+0xce>
@@ -457,10 +339,7 @@ void Dio_init()
  27a:	90 95       	com	r25
  27c:	92 23       	and	r25, r18
  27e:	94 bb       	out	0x14, r25	; 20
-				break;
  280:	0b c0       	rjmp	.+22     	; 0x298 <Dio_init+0xf2>
-				case Dio_Port_D:
-				CLR_BIT(DDRD_REG,channelPos);
  282:	21 b3       	in	r18, 0x11	; 17
  284:	ba 01       	movw	r22, r20
  286:	02 c0       	rjmp	.+4      	; 0x28c <Dio_init+0xe6>
@@ -472,23 +351,11 @@ void Dio_init()
  292:	90 95       	com	r25
  294:	92 23       	and	r25, r18
  296:	91 bb       	out	0x11, r25	; 17
-	/*PD7*/		{Output,STD_low},
-};
-
-void Dio_init()
-{
-	for (uint8 i =Dio_Channel_A0;i<PINNUM;i++)
  298:	8f 5f       	subi	r24, 0xFF	; 255
  29a:	32 96       	adiw	r30, 0x02	; 2
  29c:	80 32       	cpi	r24, 0x20	; 32
  29e:	09 f0       	breq	.+2      	; 0x2a2 <Dio_init+0xfc>
  2a0:	87 cf       	rjmp	.-242    	; 0x1b0 <Dio_init+0xa>
-				CLR_BIT(DDRD_REG,channelPos);
-				break;
-			}
-		  }
-		}
-	}
  2a2:	08 95       	ret
 
 000002a4 <LCD_WriteCommand>:
@@ -826,8 +693,8 @@ void LCD_GoToRowColumn(uint8 row, uint8 col)
  476:	08 95       	ret
 
 00000478 <main>:
-	0b00000
-};
+
+
 
 int main()
 {
