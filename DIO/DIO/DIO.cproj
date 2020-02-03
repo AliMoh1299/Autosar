@@ -144,6 +144,9 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="port.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="STD_Types.h">
       <SubType>compile</SubType>
     </Compile>

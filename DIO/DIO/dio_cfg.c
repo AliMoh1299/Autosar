@@ -3,38 +3,38 @@
 #include "bit_math.h"
 
 const Dio_pin_configType Dio_pin_config[]={
-	/*PA0*/		{Output,STD_low},
-	/*PA1*/		{Output,STD_low},
-	/*PA2*/		{Output,STD_low},
-	/*PA3*/		{Output,STD_low},
-	/*PA4*/		{Output,STD_low},
-	/*PA5*/		{Output,STD_low},
-	/*PA6*/	   	{Output,STD_low},
-	/*PA7*/		{Output,STD_low},
-	/*PB0*/		{Output,STD_low},
-	/*PB1*/		{Output,STD_low},
-	/*PB2*/		{Output,STD_low},
-	/*PB3*/		{Output,STD_low},
-	/*PB4*/		{Output,STD_low},
-	/*PB5*/		{Output,STD_low},
-	/*PB6*/		{Output,STD_low},
-	/*PB7*/		{Output,STD_low},
-	/*PC0*/		{Output,STD_low},
-	/*PC1*/		{Output,STD_low},
-	/*PC2*/		{Output,STD_low},
-	/*PC3*/		{Output,STD_low},
-	/*PC4*/		{Output,STD_low},
-	/*PC5*/		{Output,STD_low},
-	/*PC6*/		{Output,STD_low},
-	/*PC7*/		{Output,STD_low},
-	/*PD0*/		{Output,STD_low},
-	/*PD1*/		{Output,STD_low},
-	/*PD2*/		{Output,STD_low},
-	/*PD3*/		{Output,STD_low},
-	/*PD4*/		{Output,STD_low},
-	/*PD5*/		{Output,STD_low},
-	/*PD6*/		{Output,STD_low},
-	/*PD7*/		{Output,STD_low},
+	/*PA0*/		{PORT_PIN_OUT,STD_low},
+	/*PA1*/		{PORT_PIN_OUT,STD_low},
+	/*PA2*/		{PORT_PIN_OUT,STD_low},
+	/*PA3*/		{PORT_PIN_OUT,STD_low},
+	/*PA4*/		{PORT_PIN_OUT,STD_low},
+	/*PA5*/		{PORT_PIN_OUT,STD_low},
+	/*PA6*/	   	{PORT_PIN_OUT,STD_low},
+	/*PA7*/		{PORT_PIN_OUT,STD_low},
+	/*PB0*/		{PORT_PIN_OUT,STD_low},
+	/*PB1*/		{PORT_PIN_OUT,STD_low},
+	/*PB2*/		{PORT_PIN_OUT,STD_low},
+	/*PB3*/		{PORT_PIN_OUT,STD_low},
+	/*PB4*/		{PORT_PIN_OUT,STD_low},
+	/*PB5*/		{PORT_PIN_OUT,STD_low},
+	/*PB6*/		{PORT_PIN_OUT,STD_low},
+	/*PB7*/		{PORT_PIN_OUT,STD_low},
+	/*PC0*/		{PORT_PIN_OUT,STD_low},
+	/*PC1*/		{PORT_PIN_OUT,STD_low},
+	/*PC2*/		{PORT_PIN_OUT,STD_low},
+	/*PC3*/		{PORT_PIN_OUT,STD_low},
+	/*PC4*/		{PORT_PIN_OUT,STD_low},
+	/*PC5*/		{PORT_PIN_OUT,STD_low},
+	/*PC6*/		{PORT_PIN_OUT,STD_low},
+	/*PC7*/		{PORT_PIN_OUT,STD_low},
+	/*PD0*/		{PORT_PIN_OUT,STD_low},
+	/*PD1*/		{PORT_PIN_OUT,STD_low},
+	/*PD2*/		{PORT_PIN_OUT,STD_low},
+	/*PD3*/		{PORT_PIN_OUT,STD_low},
+	/*PD4*/		{PORT_PIN_OUT,STD_low},
+	/*PD5*/		{PORT_PIN_OUT,STD_low},
+	/*PD6*/		{PORT_PIN_OUT,STD_low},
+	/*PD7*/		{PORT_PIN_OUT,STD_low},
 };
 
 void Dio_init()
@@ -44,7 +44,7 @@ void Dio_init()
 		
 	  Dio_PortType channel_port=i/8;
    	  Dio_ChannelType channelPos=i%8;		
-	if(Dio_pin_config[i].pinDirection ==Output)
+	if(Dio_pin_config[i].pinDirection ==PORT_PIN_OUT)
 	{
 		switch(channel_port)
 	{

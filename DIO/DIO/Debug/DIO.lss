@@ -13,19 +13,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 00000080  00000000  00000000  00000468  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000e5a  00000000  00000000  000004e8  2**0
+  5 .debug_info   00000e46  00000000  00000000  000004e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000007a1  00000000  00000000  00001342  2**0
+  6 .debug_abbrev 00000794  00000000  00000000  0000132e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000005be  00000000  00000000  00001ae3  2**0
+  7 .debug_line   000005c8  00000000  00000000  00001ac2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000ac  00000000  00000000  000020a4  2**2
+  8 .debug_frame  000000ac  00000000  00000000  0000208c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000065a  00000000  00000000  00002150  2**0
+  9 .debug_str    00000670  00000000  00000000  00002138  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000670  00000000  00000000  000027aa  2**0
+ 10 .debug_loc    00000670  00000000  00000000  000027a8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000050  00000000  00000000  00002e1a  2**0
+ 11 .debug_ranges 00000050  00000000  00000000  00002e18  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -80,8 +80,8 @@ Disassembly of section .text:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000082 <Dio_init>:
-	/*PD6*/		{Output,STD_low},
-	/*PD7*/		{Output,STD_low},
+	/*PD6*/		{PORT_PIN_OUT,STD_low},
+	/*PD7*/		{PORT_PIN_OUT,STD_low},
 };
 
 void Dio_init()
@@ -111,7 +111,7 @@ void Dio_init()
    	  Dio_ChannelType channelPos=i%8;		
   94:	38 2f       	mov	r19, r24
   96:	37 70       	andi	r19, 0x07	; 7
-	if(Dio_pin_config[i].pinDirection ==Output)
+	if(Dio_pin_config[i].pinDirection ==PORT_PIN_OUT)
   98:	20 81       	ld	r18, Z
   9a:	21 30       	cpi	r18, 0x01	; 1
   9c:	a1 f5       	brne	.+104    	; 0x106 <Dio_init+0x84>
@@ -254,7 +254,7 @@ void Dio_init()
  16e:	90 95       	com	r25
  170:	92 23       	and	r25, r18
  172:	91 bb       	out	0x11, r25	; 17
-	/*PD7*/		{Output,STD_low},
+	/*PD7*/		{PORT_PIN_OUT,STD_low},
 };
 
 void Dio_init()
@@ -499,7 +499,6 @@ int main()
 {
 	Dio_init();
  2a4:	0e 94 41 00 	call	0x82	; 0x82 <Dio_init>
-	uint8 X;
 		while(1)
 	{ 
          Dio_WritePort(Dio_Port_D,0xF0);

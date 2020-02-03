@@ -3,11 +3,14 @@
 
 #include "STD_Types.h"
 #include "dio_types.h"
+#include "port.h"
+
 #define PINNUM   32 // Pins Number In MCU
+#define Port_PinType 8
 typedef struct
 {
 	
-	Dio_DirType pinDirection;// To Determine Pin Output Or Input
+	Port_PinDirectionType pinDirection;// To Determine Pin Output Or Input
 	STD_levelType pinState;  // To Determine Pin High Or Low
 	
 }Dio_pin_configType;
