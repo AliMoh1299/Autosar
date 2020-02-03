@@ -23,6 +23,9 @@ int main()
 		 Dio_WriteChannel(Dio_Channel_D5,STD_high);
 	_delay_ms(500);
 	     Dio_WriteChannel(Dio_Channel_D5,STD_low);
+	_delay_ms(500);
+
+		 
   
 	}	
 	return 0 ;
