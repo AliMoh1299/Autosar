@@ -2,12 +2,10 @@
 #define DIO_H_
 #include "dio_types.h"
 #include "STD_Types.h"
-#include "dio_hw.h"
-#include "dio_cfg.h"
 
-void Dio_WriteChannel(Dio_ChannelType Channel, STD_levelType level);
-void Dio_WritePort(Dio_PortType portx,uint8 uxvalue);
-void DIO_ReadPort(Dio_ChannelType channel,uint8 *data);
+void Dio_WriteChannel( Dio_ChannelType ChannelId, Dio_LevelType Level );
+void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level );
+Dio_PortLevelType Dio_ReadPort( Dio_PortType PortId );
 Dio_LevelType Dio_ReadChannel( Dio_ChannelType ChannelId );
 Dio_LevelType Dio_FlipChannel( Dio_ChannelType ChannelId);
 

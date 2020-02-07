@@ -54,12 +54,9 @@
 	
 	
 typedef STD_levelType Dio_LevelType ;
+typedef uint8 Dio_PortLevelType;
 	
-typedef enum
-	{
-		Input=0,
-		Output=! Input
-	} Dio_DirType ;
+
 	
 
 #endif /* DIO_TYPES_H_ */
