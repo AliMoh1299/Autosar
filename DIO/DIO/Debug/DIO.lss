@@ -13,19 +13,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 00000080  00000000  00000000  0000047c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000e81  00000000  00000000  000004fc  2**0
+  5 .debug_info   00000e76  00000000  00000000  000004fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000007af  00000000  00000000  0000137d  2**0
+  6 .debug_abbrev 000007a6  00000000  00000000  00001372  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000005d5  00000000  00000000  00001b2c  2**0
+  7 .debug_line   000005d7  00000000  00000000  00001b18  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000ac  00000000  00000000  00002104  2**2
+  8 .debug_frame  000000ac  00000000  00000000  000020f0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000670  00000000  00000000  000021b0  2**0
+  9 .debug_str    00000687  00000000  00000000  0000219c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000670  00000000  00000000  00002820  2**0
+ 10 .debug_loc    00000621  00000000  00000000  00002823  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000050  00000000  00000000  00002e90  2**0
+ 11 .debug_ranges 00000050  00000000  00000000  00002e44  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -274,12 +274,12 @@ void Dio_init()
  17e:	08 95       	ret
 
 00000180 <Dio_WritePort>:
-#include "STD_Types.h"
-#include "bit_math.h"
 
-void Dio_WritePort(Dio_PortType portx,uint8 uxvalue)
+
+
+void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level )
 {
-	switch (portx)
+	switch (PortId)
  180:	81 30       	cpi	r24, 0x01	; 1
  182:	41 f0       	breq	.+16     	; 0x194 <Dio_WritePort+0x14>
  184:	28 f0       	brcs	.+10     	; 0x190 <Dio_WritePort+0x10>
@@ -290,35 +290,35 @@ void Dio_WritePort(Dio_PortType portx,uint8 uxvalue)
  18e:	08 95       	ret
 	{
 		case Dio_Port_A :
-		PORTA_REG=uxvalue;
+		PORTA_REG=Level;
  190:	6b bb       	out	0x1b, r22	; 27
 		break;
  192:	08 95       	ret
 		
 		case Dio_Port_B :
-		PORTB_REG=uxvalue;
+		PORTB_REG=Level;
  194:	68 bb       	out	0x18, r22	; 24
 		break;
  196:	08 95       	ret
 		
 		case Dio_Port_C :
-		PORTC_REG=uxvalue;
+		PORTC_REG=Level;
  198:	65 bb       	out	0x15, r22	; 21
 		break;
  19a:	08 95       	ret
 		
 		case Dio_Port_D :
-		PORTD_REG=uxvalue;
+		PORTD_REG=Level;
  19c:	62 bb       	out	0x12, r22	; 18
  19e:	08 95       	ret
 
 000001a0 <Dio_WriteChannel>:
 }
 
-void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
+void Dio_WriteChannel( Dio_ChannelType ChannelId, Dio_LevelType Level )
 {
-			Dio_PortType channel_port=channel/8;     // Determine Port A,B,C,D
-			Dio_ChannelType ChannelPos =channel%8;  //Determine Which Pin In Port A,B,C,D
+			Dio_PortType channel_port=ChannelId/8;     // Determine Port A,B,C,D
+			Dio_ChannelType ChannelPos =ChannelId%8;  //Determine Which Pin In Port A,B,C,D
  1a0:	98 2f       	mov	r25, r24
  1a2:	97 70       	andi	r25, 0x07	; 7
 
@@ -337,7 +337,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
  1b8:	58 c0       	rjmp	.+176    	; 0x26a <Dio_WriteChannel+0xca>
  1ba:	08 95       	ret
 		case Dio_Port_A:
-		if(level == STD_low)
+		if(Level == STD_low)
  1bc:	61 11       	cpse	r22, r1
  1be:	0e c0       	rjmp	.+28     	; 0x1dc <Dio_WriteChannel+0x3c>
 		{
@@ -376,7 +376,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 		}
 		break;
 		case Dio_Port_B:
-		if(level == STD_low)
+		if(Level == STD_low)
  1f6:	61 11       	cpse	r22, r1
  1f8:	0e c0       	rjmp	.+28     	; 0x216 <Dio_WriteChannel+0x76>
 		{
@@ -415,7 +415,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 		}
 		break;
 		case Dio_Port_C:
-		if(level == STD_low)
+		if(Level == STD_low)
  230:	61 11       	cpse	r22, r1
  232:	0e c0       	rjmp	.+28     	; 0x250 <Dio_WriteChannel+0xb0>
 		{
@@ -454,7 +454,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 		}
 		break;
 		case Dio_Port_D:
-		if(level == STD_low)
+		if(Level == STD_low)
  26a:	61 11       	cpse	r22, r1
  26c:	0e c0       	rjmp	.+28     	; 0x28a <Dio_WriteChannel+0xea>
 		{
