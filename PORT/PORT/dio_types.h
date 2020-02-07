@@ -54,6 +54,7 @@
 	
 	
 typedef STD_levelType Dio_LevelType ;
+typedef uint8 Dio_PortLevelType;
 	
 
 	
