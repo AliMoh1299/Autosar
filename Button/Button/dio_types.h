@@ -2,7 +2,6 @@
 #define DIO_TYPES_H_
 
 #include "STD_Types.h"
-
     typedef enum
 {
 	Dio_Channel_A0,
@@ -55,12 +54,9 @@
 	
 	
 typedef STD_levelType Dio_LevelType ;
+typedef uint8 Dio_PortLevelType;
 	
-typedef enum
-	{
-		Input=0,
-		Output=! Input
-	} Dio_DirType ;
+
 	
 
 #endif /* DIO_TYPES_H_ */

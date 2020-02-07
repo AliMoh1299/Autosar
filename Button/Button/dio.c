@@ -4,38 +4,40 @@
 #include "STD_Types.h"
 #include "bit_math.h"
 
-void Dio_WritePort(Dio_PortType portx,uint8 uxvalue)
+
+
+void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level )
 {
-	switch (portx)
+	switch (PortId)
 	{
 		case Dio_Port_A :
-		PORTA_REG=uxvalue;
+		PORTA_REG=Level;
 		break;
 		
 		case Dio_Port_B :
-		PORTB_REG=uxvalue;
+		PORTB_REG=Level;
 		break;
 		
 		case Dio_Port_C :
-		PORTC_REG=uxvalue;
+		PORTC_REG=Level;
 		break;
 		
 		case Dio_Port_D :
-		PORTD_REG=uxvalue;
+		PORTD_REG=Level;
 		break;
 		
 	}
 }
 
-void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
+void Dio_WriteChannel( Dio_ChannelType ChannelId, Dio_LevelType Level )
 {
-			Dio_PortType channel_port=channel/8;     // Determine Port A,B,C,D
-			Dio_ChannelType ChannelPos =channel%8;  //Determine Which Pin In Port A,B,C,D
+			Dio_PortType channel_port=ChannelId/8;     // Determine Port A,B,C,D
+			Dio_ChannelType ChannelPos =ChannelId%8;  //Determine Which Pin In Port A,B,C,D
 
 	
 	switch(channel_port){
 		case Dio_Port_A:
-		if(level == STD_low)
+		if(Level == STD_low)
 		{
 			CLR_BIT(PORTA_REG,ChannelPos );
 		}
@@ -45,7 +47,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 		}
 		break;
 		case Dio_Port_B:
-		if(level == STD_low)
+		if(Level == STD_low)
 		{
 			CLR_BIT(PORTB_REG,ChannelPos );
 		}
@@ -55,7 +57,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 		}
 		break;
 		case Dio_Port_C:
-		if(level == STD_low)
+		if(Level == STD_low)
 		{
 			CLR_BIT(PORTC_REG,ChannelPos );
 		}
@@ -65,7 +67,7 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 		}
 		break;
 		case Dio_Port_D:
-		if(level == STD_low)
+		if(Level == STD_low)
 		{
 			CLR_BIT(PORTD_REG,ChannelPos );
 		}
@@ -79,28 +81,28 @@ void Dio_WriteChannel(Dio_ChannelType channel,STD_levelType level)
 	
 }
 
-void DIO_ReadPort(Dio_ChannelType channel,uint8 *data)
+Dio_PortLevelType Dio_ReadPort( Dio_PortType PortId )
 {
-	Dio_PortType channel_port=channel/8;
-	Dio_ChannelType channelPos=channel%8;
-	switch(channel_port)
+	Dio_PortLevelType Data;
+	switch(PortId)
 	{
 		case Dio_Port_A:
-		*data=GET_BIT(PINA_REG,channelPos);
+		Data=PINA_REG;
 		break;
 		
 		case Dio_Port_B:
-		*data=GET_BIT(PINB_REG,channelPos);
+		Data=PINB_REG;
 		break;
 		case Dio_Port_C:
-		*data=GET_BIT(PINC_REG,channelPos);
+		Data=PINC_REG;
 		break;
 		
 		case Dio_Port_D:
-		*data=GET_BIT(PIND_REG,channelPos);
+		Data=PIND_REG;
 		break;
 		
 	}
+	return Data;
 	
 }
 
