@@ -17,25 +17,79 @@ Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
 CPU DLL:         SARMCM3.DLL V5.26.2.0
 Dialog DLL:      DCM.DLL V1.17.2.0
-Target DLL:      UL2CM3.DLL V1.161.6.0
+Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
-D:\Autosar\Arm Autosar\DIO\DIO.uvproj
+D:\Autosar\Git\Autosar\Arm\DIO\DIO.uvproj
 Project File Date:  02/08/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-main.c(9): warning:  #111-D: statement is unreachable
+STD_Types.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif /* STD_TYPES_H_ */
+dio_types.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif /* DIO_TYPES_H_ */
+bit_math.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif /* BIT_MATH_H_ */
+dio.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif /* DIO_H_ */
+main.c(42): warning:  #111-D: statement is unreachable
   	return 0;
-main.c(10): warning:  #1-D: last line of file ends without a newline
+main.c(43): warning:  #1-D: last line of file ends without a newline
   }
-main.c: 2 warnings, 0 errors
+main.c: 6 warnings, 0 errors
+compiling dio.c...
+STD_Types.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif /* STD_TYPES_H_ */
+dio_types.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif /* DIO_TYPES_H_ */
+bit_math.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif /* BIT_MATH_H_ */
+dio.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif /* DIO_H_ */
+dio.c(44): warning:  #186-D: pointless comparison of unsigned integer with zero
+     if (ChannelId >=0 && ChannelId <=7)
+dio.c(167): warning:  #186-D: pointless comparison of unsigned integer with zero
+     if (ChannelId >=0 && ChannelId <=7)
+dio.c(170): warning:  #188-D: enumerated type mixed with another type
+  			Level=GET_BIT(GPIOA->DATA,channelpos);
+dio.c(179): warning:  #188-D: enumerated type mixed with another type
+  			Level=GET_BIT(GPIOB->DATA,channelpos);
+dio.c(188): warning:  #188-D: enumerated type mixed with another type
+  			Level=GET_BIT(GPIOC->DATA,channelpos);
+dio.c(197): warning:  #188-D: enumerated type mixed with another type
+  			Level=GET_BIT(GPIOD->DATA,channelpos);
+dio.c(208): warning:  #188-D: enumerated type mixed with another type
+  		 Level=GET_BIT(GPIOE->DATA,(ChannelId-32));
+dio.c(219): warning:  #188-D: enumerated type mixed with another type
+  			Level=GET_BIT(GPIOF->DATA,(ChannelId-38));
+dio.c(224): warning:  #940-D: missing return statement at end of non-void function "Dio_ReadChannel" 
+   }
+dio.c(234): warning:  #186-D: pointless comparison of unsigned integer with zero
+     if (ChannelId >=0 && ChannelId <=7)
+dio.c(238): warning:  #188-D: enumerated type mixed with another type
+  		 return GET_BIT(GPIOA->DATA,channelpos);
+dio.c(247): warning:  #188-D: enumerated type mixed with another type
+  		return GET_BIT(GPIOB->DATA,channelpos);
+dio.c(256): warning:  #188-D: enumerated type mixed with another type
+  		return GET_BIT(GPIOC->DATA,channelpos);
+dio.c(265): warning:  #188-D: enumerated type mixed with another type
+  		 return GET_BIT(GPIOD->DATA,channelpos);
+dio.c(277): warning:  #188-D: enumerated type mixed with another type
+  		 return GET_BIT(GPIOE->DATA,(ChannelId-32));
+dio.c(288): warning:  #188-D: enumerated type mixed with another type
+  		return GET_BIT(GPIOF->DATA,(ChannelId-38)); 
+dio.c(292): warning:  #940-D: missing return statement at end of non-void function "Dio_FlipChannel" 
+    }
+dio.c(294): warning:  #1-D: last line of file ends without a newline
+   
+dio.c: 22 warnings, 0 errors
 linking...
-Program Size: Code=940 RO-data=16 RW-data=0 ZI-data=352  
-".\Objects\DIO.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=1384 RO-data=16 RW-data=0 ZI-data=352  
+".\Objects\DIO.axf" - 0 Error(s), 28 Warning(s).
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

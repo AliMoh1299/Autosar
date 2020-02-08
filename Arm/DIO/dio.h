@@ -1,7 +1,10 @@
 #ifndef DIO_H_
 #define DIO_H_
+#include<TM4C123GH6PM.h>
 #include "dio_types.h"
 #include "STD_Types.h"
+#include "bit_math.h"
+//#include "dio_hw.h"
 
 void Dio_WriteChannel( Dio_ChannelType ChannelId, Dio_LevelType Level );
 void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level );

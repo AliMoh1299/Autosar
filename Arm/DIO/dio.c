@@ -1,8 +1,9 @@
 #include "dio.h"
-#include "dio_hw.h"
+//#include "dio_hw.h"
 #include "dio_types.h"
 #include "STD_Types.h"
 #include "bit_math.h"
+
 
 void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level ){
 	switch (PortId)
@@ -37,9 +38,8 @@ void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level ){
 
 void Dio_WriteChannel( Dio_ChannelType ChannelId, Dio_LevelType Level )
 {
-	uint8 channelpos;
-if(ChannelId >=0 && ChannelId <=31)
-{
+	uint32 channelpos;
+
 	 channelpos =ChannelId%8;
    if (ChannelId >=0 && ChannelId <=7)
 	 {
@@ -47,43 +47,46 @@ if(ChannelId >=0 && ChannelId <=31)
 		{
 			CLR_BIT(GPIOA->DATA,channelpos);
 		}
-	}
+	
 		else
 		 {
 			SET_BIT(GPIOA->DATA,channelpos );
 		 }
+	 }
 //----------------------------------------------------------------------
-   if (ChannelId >=8 && ChannelId <=15)
+   else if (ChannelId >=8 && ChannelId <=15)
 	 {
 		if(Level == STD_low)
 		{
 			CLR_BIT(GPIOB->DATA,channelpos);
 		}
-	}
+	
 		else
 		 {
 			SET_BIT(GPIOB->DATA,channelpos );
 		 }
+	 }
 //----------------------------------------------------------------------
-   if (ChannelId >=16 && ChannelId <=23)
+   else if (ChannelId >=16 && ChannelId <=23)
 	 {
 		if(Level == STD_low)
 		{
 			CLR_BIT(GPIOC->DATA,channelpos);
 		}
-	}
+
 		else
 		 {
 			SET_BIT(GPIOC->DATA,channelpos );
 		 }
+	 }
 //----------------------------------------------------------------------
-   if (ChannelId >=24 && ChannelId <=31)
+   else if (ChannelId >=24 && ChannelId <=31)
 	 {
 		if(Level == STD_low)
 		{
 			CLR_BIT(GPIOD->DATA,channelpos);
 		}
-	}
+	
 		else
 		 {
 			SET_BIT(GPIOD->DATA,channelpos );
@@ -91,36 +94,35 @@ if(ChannelId >=0 && ChannelId <=31)
 	 }
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
-else if (ChannelId >=32 && ChannelId <=43)
-{
-	 channelpos=(ChannelId-2)%6;
-   if (ChannelId >=32 && ChannelId <=37)
+   else if (ChannelId >=32 && ChannelId <=37)
 	 {
 		if(Level == STD_low)
 		{
-			CLR_BIT(GPIOE->DATA,channelpos);
+			CLR_BIT(GPIOE->DATA,(ChannelId-32));
 		}
-	}
+	
 		else
 		 {
-			SET_BIT(GPIOE->DATA,channelpos );
+			SET_BIT(GPIOE->DATA,(ChannelId-32));
 		 }
+	 }
 //----------------------------------------------------------------------
 
-   if (ChannelId >=38 && ChannelId <=43)
+  else if (ChannelId >=38 && ChannelId <=43)
 		 
 	 {
 		if(Level == STD_low)
 		{
-			CLR_BIT(GPIOF->DATA,channelpos);
+			CLR_BIT(GPIOF->DATA,(ChannelId-38));
 		}
-	}
+	
 		else
 		 {
-			SET_BIT(GPIOF->DATA,channelpos );
+			SET_BIT(GPIOF->DATA,(ChannelId-38) );
 		 }		 
   }
 }
+
 
 Dio_PortLevelType Dio_ReadPort( Dio_PortType PortId )
 {
@@ -159,8 +161,7 @@ Dio_LevelType Dio_ReadChannel( Dio_ChannelType ChannelId )
 {
 	uint8 channelpos;
 	Dio_LevelType Level;
-if(ChannelId >=0 && ChannelId <=31)
-{
+
 //---------------------------------------------------------------------- Port A	
 	 channelpos =ChannelId%8;
    if (ChannelId >=0 && ChannelId <=7)
@@ -198,41 +199,36 @@ if(ChannelId >=0 && ChannelId <=31)
 
 	 }
 
- }
-//----------------------------------------------------------------------
-//----------------------------------------------------------------------
-else if (ChannelId >=32 && ChannelId <=43)
- {
-	 channelpos=(ChannelId-2)%6;
+ 
+
 //----------------------------------------------------------------------Port E 
-   if (ChannelId >=32 && ChannelId <=37)
+   else if (ChannelId >=32 && ChannelId <=37)
 	 {
 		 
-		 Level=GET_BIT(GPIOE->DATA,channelpos);
+		 Level=GET_BIT(GPIOE->DATA,(ChannelId-32));
 		 return Level ;
 
 	 }
 
 //----------------------------------------------------------------------Port F
 
-   if (ChannelId >=38 && ChannelId <=43)
+  else if (ChannelId >=38 && ChannelId <=43)
 		 
 	 {
 		 
-			Level=GET_BIT(GPIOF->DATA,channelpos);
+			Level=GET_BIT(GPIOF->DATA,(ChannelId-38));
 		  return Level ;
 
 	 }
 		 
  }
-}
+
 
 
 Dio_LevelType Dio_FlipChannel( Dio_ChannelType ChannelId)
 {
 uint8 channelpos;
-if(ChannelId >=0 && ChannelId <=31)
- {
+
 	 channelpos =ChannelId%8;
 //----------------------------------------------------------------------Port A
    if (ChannelId >=0 && ChannelId <=7)
@@ -270,17 +266,15 @@ if(ChannelId >=0 && ChannelId <=31)
 
 	 }
 
- }
+ 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------Port E
-else if (ChannelId >=32 && ChannelId <=43)
-{
-	 channelpos=(ChannelId-2)%6;
+
    if (ChannelId >=32 && ChannelId <=37)
 	 {
 		 
-	   TOGGLE_BIT(GPIOE->DATA,channelpos);
-		 return GET_BIT(GPIOE->DATA,channelpos);
+	   TOGGLE_BIT(GPIOE->DATA,(ChannelId-32));
+		 return GET_BIT(GPIOE->DATA,(ChannelId-32));
 
 	 }
 
@@ -290,10 +284,11 @@ else if (ChannelId >=32 && ChannelId <=43)
 		 
 	 {
 		 
-		TOGGLE_BIT(GPIOF->DATA,channelpos);
-		return GET_BIT(GPIOF->DATA,channelpos); 
+		TOGGLE_BIT(GPIOF->DATA,(ChannelId-38));
+		return GET_BIT(GPIOF->DATA,(ChannelId-38)); 
 		 
 	 }
 		 
   }
-}
+
+ 

@@ -1,1 +1,1 @@
-.\objects\startup_rvmdk.o: ..\..\AUTOSAR_Course\ARM_TOOLS\LCD\startup_rvmdk.S
+.\objects\startup_rvmdk.o: startup_rvmdk.S

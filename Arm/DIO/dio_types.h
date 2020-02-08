@@ -55,8 +55,7 @@
 	Dio_Channel_F1,
 	Dio_Channel_F2,
 	Dio_Channel_F3,
-	Dio_Channel_F4,
-	Dio_Channel_F5
+	Dio_Channel_F4
 
 	} Dio_ChannelType ;
 	
@@ -69,7 +68,6 @@
 		Dio_Port_E,
 		Dio_Port_F
 	} Dio_PortType ;
-	
 	
 typedef STD_levelType Dio_LevelType ;
 typedef uint8 Dio_PortLevelType ;
