@@ -1,0 +1,48 @@
+Dependencies for Project 'LCD', Target 'Target 1': (DO NOT MODIFY !)
+F (.\bit_math.h)(0x5E2DFD82)()
+F (.\dio.c)(0x5E3EA72A)(--c99 --gnu -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123-D__UVISION_VERSION="526" -DTM4C123GH6PM-o .\objects\dio.o --omf_browse .\objects\dio.crf --depend .\objects\dio.d)
+I (dio.h)(0x5E3E9C02)
+I (C:\Keil_v5\ARM\INC\TI\TM4C123\TM4C123GH6PM.h)(0x559D3620)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\TI\TM4C123\system_TM4C123.h)(0x559D3620)
+I (dio_types.h)(0x5E3EA076)
+I (STD_Types.h)(0x5E36B0BA)
+I (bit_math.h)(0x5E2DFD82)
+F (.\dio.h)(0x5E3E9C02)()
+F (.\dio_types.h)(0x5E3EA076)()
+F (.\startup_rvmdk.S)(0x5E3D506E)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123--pd "__UVISION_VERSION SETA 526"--list .\listings\startup_rvmdk.lst --xref -o .\objects\startup_rvmdk.o --depend .\objects\startup_rvmdk.d)
+F (.\STD_Types.h)(0x5E36B0BA)()
+F (.\lcd.h)(0x5E3EB323)()
+F (.\lcd_cfg.h)(0x5E3EB5EB)()
+F (.\lcd.c)(0x5E3EBECC)(--c99 --gnu -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123-D__UVISION_VERSION="526" -DTM4C123GH6PM-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+I (STD_Types.h)(0x5E36B0BA)
+I (bit_math.h)(0x5E2DFD82)
+I (lcd.h)(0x5E3EB323)
+I (dio.h)(0x5E3E9C02)
+I (C:\Keil_v5\ARM\INC\TI\TM4C123\TM4C123GH6PM.h)(0x559D3620)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\TI\TM4C123\system_TM4C123.h)(0x559D3620)
+I (dio_types.h)(0x5E3EA076)
+I (lcd_cfg.h)(0x5E3EB5EB)
+F (.\main.c)(0x5E3EBE45)(--c99 --gnu -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\TI\TM4C123-D__UVISION_VERSION="526" -DTM4C123GH6PM-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (dio.h)(0x5E3E9C02)
+I (C:\Keil_v5\ARM\INC\TI\TM4C123\TM4C123GH6PM.h)(0x559D3620)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F2F9E)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\TI\TM4C123\system_TM4C123.h)(0x559D3620)
+I (dio_types.h)(0x5E3EA076)
+I (STD_Types.h)(0x5E36B0BA)
+I (bit_math.h)(0x5E2DFD82)
+I (lcd.h)(0x5E3EB323)
+I (lcd_cfg.h)(0x5E3EB5EB)

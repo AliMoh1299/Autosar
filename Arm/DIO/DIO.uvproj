@@ -461,6 +461,16 @@
               <FileType>2</FileType>
               <FilePath>.\startup_rvmdk.S</FilePath>
             </File>
+            <File>
+              <FileName>dio_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dio_cfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>dio_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dio_cfg.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

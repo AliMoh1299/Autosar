@@ -10,3 +10,4 @@
 .\objects\main.o: dio_types.h
 .\objects\main.o: STD_Types.h
 .\objects\main.o: bit_math.h
+.\objects\main.o: dio_cfg.h

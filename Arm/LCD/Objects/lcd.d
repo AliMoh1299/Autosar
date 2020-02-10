@@ -1,0 +1,15 @@
+.\objects\lcd.o: lcd.c
+.\objects\lcd.o: STD_Types.h
+.\objects\lcd.o: bit_math.h
+.\objects\lcd.o: lcd.h
+.\objects\lcd.o: dio.h
+.\objects\lcd.o: C:\Keil_v5\ARM\INC\TI\TM4C123\TM4C123GH6PM.h
+.\objects\lcd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
+.\objects\lcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\lcd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\objects\lcd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\objects\lcd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
+.\objects\lcd.o: C:\Keil_v5\ARM\INC\TI\TM4C123\system_TM4C123.h
+.\objects\lcd.o: dio_types.h
+.\objects\lcd.o: lcd_cfg.h
+.\objects\lcd.o: lcd_cfg.h
