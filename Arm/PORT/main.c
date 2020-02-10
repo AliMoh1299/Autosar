@@ -7,7 +7,7 @@ int main()
 	Port_Init(GPIOF,PORT_PIN_OUT);
 	while(1)
 	{
-		GPIOF->DATA=0b10;
+		GPIOF->DATA=0b110;
 	}
 return 0;
 }
