@@ -99,6 +99,7 @@ void LCD_GoToRowColumn(uint8 row, uint8 col)
 		case 1:
 		Address=col+0x40;
 		break;
+
 		
 	}
 	

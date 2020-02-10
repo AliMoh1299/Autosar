@@ -5,10 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.26.2.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Ali Mohamed, HP Inc., LIC=----
+License Information: Ali Mohamed, HP Inc., LIC=50D74-FEDEI-AW22F-6PLXM-DMA3L-NC9C6
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.26.2.0
+Toolchain:       MDK-ARM Professional  Version: 5.26.2.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 6 (build 750)
 Assembler:       Armasm.exe V5.06 update 6 (build 750)
@@ -27,6 +27,7 @@ Project File Date:  02/08/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
+assembling startup_rvmdk.S...
 compiling main.c...
 STD_Types.h(23): warning:  #1-D: last line of file ends without a newline
   #endif /* STD_TYPES_H_ */
@@ -41,6 +42,18 @@ main.c(19): warning:  #111-D: statement is unreachable
 main.c(20): warning:  #1-D: last line of file ends without a newline
   }
 main.c: 6 warnings, 0 errors
+compiling lcd.c...
+STD_Types.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif /* STD_TYPES_H_ */
+bit_math.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif /* BIT_MATH_H_ */
+dio_types.h(79): warning:  #1-D: last line of file ends without a newline
+  #endif /* DIO_TYPES_H_ */
+dio.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif /* DIO_H_ */
+lcd.c(62): warning:  #188-D: enumerated type mixed with another type
+  	Dio_WritePort(LCD_Dir,STD_low);
+lcd.c: 5 warnings, 0 errors
 compiling dio.c...
 STD_Types.h(23): warning:  #1-D: last line of file ends without a newline
   #endif /* STD_TYPES_H_ */
@@ -89,7 +102,7 @@ dio.c(294): warning:  #1-D: last line of file ends without a newline
 dio.c: 22 warnings, 0 errors
 linking...
 Program Size: Code=1800 RO-data=16 RW-data=0 ZI-data=352  
-".\Objects\LCD.axf" - 0 Error(s), 28 Warning(s).
+".\Objects\LCD.axf" - 0 Error(s), 33 Warning(s).
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
