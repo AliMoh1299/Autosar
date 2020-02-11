@@ -1,0 +1,10 @@
+--cpu=Cortex-M4.fp
+".\objects\dio.o"
+".\objects\dio_cfg.o"
+".\objects\startup_rvmdk.o"
+".\objects\button.o"
+".\objects\main.o"
+--strict --scatter ".\Objects\BUTTON.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\BUTTON.map" -o .\Objects\BUTTON.axf
