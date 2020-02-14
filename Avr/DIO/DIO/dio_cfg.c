@@ -34,7 +34,7 @@ const Dio_pin_configType Dio_pin_config[]={
 	/*PD4*/		{PORT_PIN_OUT,STD_low},
 	/*PD5*/		{PORT_PIN_OUT,STD_low},
 	/*PD6*/		{PORT_PIN_OUT,STD_low},
-	/*PD7*/		{PORT_PIN_OUT,STD_low},
+	/*PD7*/		{PORT_PIN_OUT,STD_low}
 };
 
 void Dio_init()
