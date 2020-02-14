@@ -471,6 +471,11 @@
               <FileType>1</FileType>
               <FilePath>.\dio_cfg.c</FilePath>
             </File>
+            <File>
+              <FileName>dioc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dioc.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

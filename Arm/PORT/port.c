@@ -1,87 +1,64 @@
 #include "port.h"
 
-uint8 PINNUM=42;
+#define UNLOCKED 0x4C4F434B
+#define PINNUM   42
+#define PNUM   5
+#define OUTPUT 255
+#define INPUT  0
+#define ON     1
+#define OFF    0
 
-void Port_Init(GPIOA_Type *GPIO,Port_PinDirectionType Direction)
+
+
+//----------------------------------------------------------------------
+ const Port_ConfigType PortCfg_All []={
+//AFSEL,PCTL,AMSEL,DEN,CR,LOCK,DIR,CLOCK		 
+{0,0,0,255,255,UNLOCKED,OUTPUT,OFF},	//GPIOA
+{0,0,0,255,255,UNLOCKED,OUTPUT,OFF},	//GPIOB
+{0,0,0,255,255,UNLOCKED,OUTPUT,OFF},	//GPIOC
+{0,0,0,255,255,UNLOCKED,OUTPUT,OFF}, //GPIOD
+{0,0,0,255,255,UNLOCKED,OUTPUT,OFF}, //GPIOE
+{0,0,0,255,255,UNLOCKED,OUTPUT,ON }, //GPIOF
+	// Da Kda Linktime Confg ?
+};
+
+void Port_Init( const Port_ConfigType* ConfigPtr )
 {
-GPIO->LOCK=0x4C4F434B;
-GPIO->AFSEL = 0x00;
-GPIO->PCTL  = 0x00;
-GPIO->AMSEL = 0x00;
-GPIO->DEN=0xFF;
-GPIO->CR=0xFF;	
-
-	
-	if(GPIO==GPIOA)
+for (uint8 i=0;i<PNUM;i++)
+{
+	if (ConfigPtr[i].CLOCK==ON)
+ {
+	switch(i)
 	{
-     SET_BIT(SYSCTL->RCGC2,0);
-		if(Direction == PORT_PIN_OUT)
-		{
-		GPIO->DIR=0xFF;
-		}
-		else{		
-			GPIO->DIR=0x00;		
-		}		
+		case 0://PORTA
+     SET_BIT(SYSCTL->RCGC2,0);	
+		break;
+		
+		case 1://PORTB
+     SET_BIT(SYSCTL->RCGC2,1);	
+		break;		
+		
+		case 2://PORTC
+     SET_BIT(SYSCTL->RCGC2,2);	
+		break;		
+		
+		case 3://PORTD
+     SET_BIT(SYSCTL->RCGC2,3);	
+		break;		
+		
+		case 4://PORTE
+     SET_BIT(SYSCTL->RCGC2,4);	
+		break;		
+		
+		case 5://PORTF
+     SET_BIT(SYSCTL->RCGC2,5);	
+		break;		
+		
+		
 	}
-else if(GPIO==GPIOB)
-{		SET_BIT(SYSCTL->RCGC2,1);
-		if(Direction == PORT_PIN_OUT)
-		{
-		GPIO->DIR=0xFF;
-		}
-		else{		
-			GPIO->DIR=0x00;		
-		}
+ }
 }
-else if(GPIO==GPIOC)
-{		SET_BIT(SYSCTL->RCGC2,2);
-		if(Direction == PORT_PIN_OUT)
-		{
-		GPIO->DIR=0xFF;
-		}
-		else{		
-			GPIO->DIR=0x00;		
-		}
 }
-else if(GPIO==GPIOD)
-{		SET_BIT(SYSCTL->RCGC2,3);
-		if(Direction == PORT_PIN_OUT)
-		{
-		GPIO->DIR=0xFF;
-		}
-		else{		
-			GPIO->DIR=0x00;		
-		}
-
-}
-	else if(GPIO==GPIOE)
-	{
-SET_BIT(SYSCTL->RCGC2,4);
-		if(Direction == PORT_PIN_OUT)
-		{
-		GPIO->DIR=0x3F;
-		}	
-		else{		
-			GPIO->DIR=0x00;		
-		}		
-	}
-	else if(GPIO==GPIOF)
-	{	
-		SET_BIT(SYSCTL->RCGC2,5);
-		if(Direction == PORT_PIN_OUT)
-		{
-		GPIO->DIR=0x1F;		
-		}	
-		else{		
-			GPIO->DIR=0x00;		
-		}
-	}
-
-
-
-}
-
-
 
 
 void Port_SetPinDirection( Port_PinType Pin, Port_PinDirectionType Direction )

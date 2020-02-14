@@ -2,8 +2,11 @@
 #define DIO_TYPES_H_
 
 #include "STD_Types.h"
-    typedef enum
-{
+
+typedef enum  // Dio_Channel
+{ 
+	
+	
 	Dio_Channel_A0,
 	Dio_Channel_A1,
 	Dio_Channel_A2,
@@ -59,8 +62,9 @@
 
 	} Dio_ChannelType ;
 	
-typedef enum
+typedef enum //Dio_Port
 {
+	
 	Dio_Port_A,
 	Dio_Port_B,
 	Dio_Port_C,

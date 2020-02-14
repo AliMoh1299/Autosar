@@ -11,19 +11,18 @@ typedef enum
 
 typedef struct {
 
-uint32  DIR;                               /*!< GPIO Direction                              */                                                  
-uint32  AFSEL;                             /*!< GPIO Alternate Function Select              */                                             
-uint32  PUR;                               /*!< GPIO Pull-Up Select                         */
-uint32  PDR;                               /*!< GPIO Pull-Down Select                       */
-uint32  DEN;                               /*!< GPIO Digital Enable                         */
-uint32  LOCK;                              /*!< GPIO Lock                                   */
-uint32  CR;                                /*!< GPIO Commit                                 */
-uint32  AMSEL;                             /*!< GPIO Analog Mode Select                     */
-uint32  PCTL;                              /*!< GPIO Port Control                           */
-
-
+uint32  AFSEL;                             /* <          GPIO Alternate Function Select        */        
+uint32  PCTL;                              /* <          GPIO Port Control                     */	
+uint32  AMSEL;                             /* <          GPIO Analog Mode Select               */
+uint32  DEN;                               /* <          GPIO Digital Enable                   */
+uint32  CR;                                /* <          GPIO Commit                           */
+uint32  LOCK;                              /* <          GPIO Lock                             */	
+uint32  DIR;                               /* <          GPIO Direction                        */
+uint8   CLOCK;
 
 }Port_ConfigType;
+
+extern const Port_ConfigType PortCfg_All [];
 
 
 typedef Dio_ChannelType Port_PinType;
