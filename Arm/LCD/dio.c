@@ -3,8 +3,6 @@
 #include "dio_types.h"
 #include "STD_Types.h"
 #include "bit_math.h"
-
-
 void Dio_WritePort( Dio_PortType PortId, Dio_PortLevelType Level ){
 	switch (PortId)
 	{

@@ -9,12 +9,11 @@ int main()
 	while(1)
 	{
 
-		//LCD_Clear();
-		delayUs(600);
-		LCD_WriteCommand(0x80);
-	//	LCD_GoToRowColumn(1,5);
+		LCD_Clear();
+		delayMs(1000);
+		LCD_GoToRowColumn(1,5);
 		LCD_WriteData('A');
-		delayUs(600);
+		delayMs(1000);
 	}
 	return 0;
 }

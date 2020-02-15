@@ -2,69 +2,62 @@
 
 #define UNLOCKED 0x4C4F434B
 #define PINNUM   42
-#define PNUM   5
-#define OUTPUT 255
-#define INPUT  0
-#define ON     1
-#define OFF    0
+
+uint32 Delay;
 
 
-
-//----------------------------------------------------------------------
- const Port_ConfigType PortCfg_All []={
-//AFSEL,PCTL,AMSEL,DEN,CR,LOCK,DIR,CLOCK		 
-{0,0,0,255,255,UNLOCKED,OUTPUT,OFF},	//GPIOA
-{0,0,0,255,255,UNLOCKED,OUTPUT,OFF},	//GPIOB
-{0,0,0,255,255,UNLOCKED,OUTPUT,OFF},	//GPIOC
-{0,0,0,255,255,UNLOCKED,OUTPUT,OFF}, //GPIOD
-{0,0,0,255,255,UNLOCKED,OUTPUT,OFF}, //GPIOE
-{0,0,0,255,255,UNLOCKED,OUTPUT,ON }, //GPIOF
-	// Da Kda Linktime Confg ?
-};
-
-void Port_Init( const Port_ConfigType* ConfigPtr )
+void Port_Init(  Port_ConfigType* ConfigPtr )
 {
-for (uint8 i=0;i<PNUM;i++)
+	if(ConfigPtr==GPIOA)
 {
-	if (ConfigPtr[i].CLOCK==ON)
- {
-	switch(i)
-	{
-		case 0://PORTA
-     SET_BIT(SYSCTL->RCGC2,0);	
-		break;
-		
-		case 1://PORTB
-     SET_BIT(SYSCTL->RCGC2,1);	
-		break;		
-		
-		case 2://PORTC
-     SET_BIT(SYSCTL->RCGC2,2);	
-		break;		
-		
-		case 3://PORTD
-     SET_BIT(SYSCTL->RCGC2,3);	
-		break;		
-		
-		case 4://PORTE
-     SET_BIT(SYSCTL->RCGC2,4);	
-		break;		
-		
-		case 5://PORTF
-     SET_BIT(SYSCTL->RCGC2,5);	
-		break;		
-		
-		
-	}
- }
-}
+	SET_BIT(SYSCTL->RCGC2,0);	
+	Delay=SYSCTL->RCGC2;
+}	
+
+else if(ConfigPtr==GPIOB)
+{
+	SET_BIT(SYSCTL->RCGC2,1);	
+	Delay=SYSCTL->RCGC2;
+}		
+
+else if(ConfigPtr==GPIOC)
+{
+	SET_BIT(SYSCTL->RCGC2,2);	
+	Delay=SYSCTL->RCGC2;
+}	
+
+else if(ConfigPtr==GPIOD)
+{
+	SET_BIT(SYSCTL->RCGC2,3);	
+	Delay=SYSCTL->RCGC2;
+}	
+
+else if(ConfigPtr==GPIOE)
+{
+	SET_BIT(SYSCTL->RCGC2,4);	
+	Delay=SYSCTL->RCGC2;
+}	
+
+else if(ConfigPtr==GPIOF)
+{
+	SET_BIT(SYSCTL->RCGC2,5);	
+	Delay=SYSCTL->RCGC2;
+}	
+  ConfigPtr->LOCK  = UNLOCKED ;
+	ConfigPtr->DEN   = 0xFF ;
+	ConfigPtr->CR    = 0xFF;
+	ConfigPtr->AFSEL = 0;
+	ConfigPtr->AMSEL = 0;
+	ConfigPtr->PCTL  = 0;	
+
+
+	
 }
 
 
 void Port_SetPinDirection( Port_PinType Pin, Port_PinDirectionType Direction )
 {
-	for (uint8 i =Dio_Channel_A0; i<PINNUM ;i++)
-	{
+
 		uint32 channelpos;
 
 	 channelpos =Pin%8;
@@ -151,6 +144,5 @@ void Port_SetPinDirection( Port_PinType Pin, Port_PinDirectionType Direction )
   }
 }
 
-		}
 
 

@@ -22,16 +22,24 @@ void delayUs(int n){
 
 void LCD_int()
 { 
-	SYSCTL->RCGCGPIO=(1U<<1)|(1U<<0);
-	LCD->DATA=0xFF;
+	SYSCTL->RCGC2|=(1<<1);
+	volatile uint32 delay = SYSCTL->RCGC2;
+	LCD->LOCK=0x4C4F434B;
 	LCD->DEN=0xFF;
-	delayUs(40);		
-//LCD_WriteCommand(0x33); 
-//LCD_WriteCommand(0x32);	
+	LCD->DIR=0xFF;
+	LCD->AMSEL=0;
+	LCD->AFSEL=0;
+	LCD->PCTL=0;
+	LCD->PUR=0;
+	delayUs(40);	
+	Dio_WriteChannel(RW,STD_low);
 	LCD_WriteCommand(0x28);	
   LCD_WriteCommand(0x0c);	
 	LCD_WriteCommand(0x06);	
 	LCD_WriteCommand(0x01);	
+   delayMs(2);
+		LCD_WriteCommand(0x80);	
+
 }
 
 void LCD_Clear(void)
@@ -55,11 +63,8 @@ void LCD_WriteString(uint8 *String)
 
 void LCD_WriteCommand(uint8 Command)
 {   
-		Dio_WriteChannel(RW,STD_low);
-
-	LCD_Port = (LCD_Port & 0x0F) | (Command & 0xF0);
+	Dio_WriteChannel(RW,STD_low);
 	Dio_WritePort(Dio_Port_B,((LCD_Port & 0x0F) | (Command & 0xF0)));
-	Dio_WritePort(LCD_Dir,STD_low);
 	Dio_WriteChannel(RS,STD_low);
 	Dio_WriteChannel(EN,STD_high);
 	delayUs(40);
@@ -74,7 +79,6 @@ void LCD_WriteCommand(uint8 Command)
 
 void LCD_WriteData(uint8 Data)
 {
-	LCD_Port = (LCD_Port& 0x0F) | (Data & 0xF0);
 	Dio_WritePort(Dio_Port_B,((LCD_Port & 0x0F) | (Data & 0xF0)));
 	Dio_WriteChannel(RS,STD_high);
 	Dio_WriteChannel(EN,STD_high);

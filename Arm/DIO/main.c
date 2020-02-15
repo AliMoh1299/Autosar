@@ -12,11 +12,11 @@ int main()
 while(1)
 
 {
-	
-Dio_FlipChannel(Dio_Channel_F3);
-	for(int i =0 ; i<1000000;i++){}
-		Dio_FlipChannel(Dio_Channel_F1);
-	for(int i =0 ; i<1000000;i++){}
+	Dio_WriteChannel(Dio_Channel_F2,STD_high);
+	for(int i =0 ; i<100000;i++){}
+	Dio_WriteChannel(Dio_Channel_F2,STD_low);
+	for(int i =0 ; i<100000;i++){}
+
 
 }
 	return 0;

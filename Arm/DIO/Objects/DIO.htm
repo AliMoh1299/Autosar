@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\DIO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\DIO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 12 10:58:10 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Feb 14 16:28:46 2020
 <BR><P>
 <H3>Maximum Stack Usage =         16 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; Dio_Init
+__rt_entry_main &rArr; main &rArr; Dio_WriteChannel
 <P>
 <H3>
 Functions with no stack information
@@ -152,7 +152,7 @@ Global Symbols
 
 <P><STRONG><a name="[11]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Dio_Init
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Dio_WriteChannel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -221,23 +221,23 @@ Global Symbols
 
 <P><STRONG><a name="[46]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1c]"></a>Dio_FlipChannel</STRONG> (Thumb, 258 bytes, Stack size 8 bytes, dio.o(i.Dio_FlipChannel))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Dio_FlipChannel
-</UL>
-<BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
 <P><STRONG><a name="[1b]"></a>Dio_Init</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, dio_cfg.o(i.Dio_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Dio_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[12]"></a>main</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = main &rArr; Dio_Init
+<P><STRONG><a name="[1c]"></a>Dio_WriteChannel</STRONG> (Thumb, 314 bytes, Stack size 16 bytes, dio.o(i.Dio_WriteChannel))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Dio_WriteChannel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dio_Init
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dio_FlipChannel
+<BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[12]"></a>main</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = main &rArr; Dio_WriteChannel
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dio_WriteChannel
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dio_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
