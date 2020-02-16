@@ -1,0 +1,543 @@
+
+EPROM.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000270  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000002c4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000002c4  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002f4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000a0  00000000  00000000  00000330  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000c37  00000000  00000000  000003d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000007e9  00000000  00000000  00001007  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000006c5  00000000  00000000  000017f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000134  00000000  00000000  00001eb8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000042c  00000000  00000000  00001fec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000003ac  00000000  00000000  00002418  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000070  00000000  00000000  000027c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 0e 01 	call	0x21c	; 0x21c <main>
+  64:	0c 94 36 01 	jmp	0x26c	; 0x26c <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <Eep_Init>:
+#include "EEPROM.h"
+
+
+void Eep_Init( /*const Eep_ConfigType* ConfigPtr*/void )
+{
+	TWI_Init(FastMode,0,0,1);
+  6c:	21 e0       	ldi	r18, 0x01	; 1
+  6e:	40 e0       	ldi	r20, 0x00	; 0
+  70:	60 e0       	ldi	r22, 0x00	; 0
+  72:	82 e0       	ldi	r24, 0x02	; 2
+  74:	0e 94 da 00 	call	0x1b4	; 0x1b4 <TWI_Init>
+  78:	08 95       	ret
+
+0000007a <Eep_Write>:
+}
+
+
+
+Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBufferPtr, Eep_LengthType Length )
+{
+  7a:	ff 92       	push	r15
+  7c:	0f 93       	push	r16
+  7e:	1f 93       	push	r17
+  80:	cf 93       	push	r28
+  82:	df 93       	push	r29
+  84:	f8 2e       	mov	r15, r24
+  86:	8b 01       	movw	r16, r22
+  88:	ea 01       	movw	r28, r20
+	    TWI_Start();
+  8a:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <TWI_Start>
+	    if (TWI_GetStatus() != TW_START)
+  8e:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+  92:	88 30       	cpi	r24, 0x08	; 8
+  94:	41 f5       	brne	.+80     	; 0xe6 <Eep_Write+0x6c>
+	    return E_NOT_OK;
+	    
+	    //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+	    TWI_Write((uint8)(0xA0 | ((EepromAddress & 0x0700)>>7)));
+  96:	80 ea       	ldi	r24, 0xA0	; 160
+  98:	0e 94 fd 00 	call	0x1fa	; 0x1fa <TWI_Write>
+	    if (TWI_GetStatus() != TW_MT_SLA_W_ACK)
+  9c:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+  a0:	88 31       	cpi	r24, 0x18	; 24
+  a2:	19 f5       	brne	.+70     	; 0xea <Eep_Write+0x70>
+	    return E_NOT_OK;
+	    
+	    //send the required location address
+	    TWI_Write((uint8)(EepromAddress));
+  a4:	8f 2d       	mov	r24, r15
+  a6:	0e 94 fd 00 	call	0x1fa	; 0x1fa <TWI_Write>
+	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
+  aa:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+  ae:	88 32       	cpi	r24, 0x28	; 40
+  b0:	f1 f4       	brne	.+60     	; 0xee <Eep_Write+0x74>
+	    return E_NOT_OK;
+	    
+	    //write byte to eeprom
+		
+			while( Length!=0)
+  b2:	20 97       	sbiw	r28, 0x00	; 0
+  b4:	81 f0       	breq	.+32     	; 0xd6 <Eep_Write+0x5c>
+			{
+	      TWI_Write(*DataBufferPtr);
+  b6:	f8 01       	movw	r30, r16
+  b8:	80 81       	ld	r24, Z
+  ba:	0e 94 fd 00 	call	0x1fa	; 0x1fa <TWI_Write>
+		  if (TWI_GetStatus() != TW_MT_DATA_ACK)
+  be:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+  c2:	88 32       	cpi	r24, 0x28	; 40
+  c4:	b1 f4       	brne	.+44     	; 0xf2 <Eep_Write+0x78>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  c6:	8f e3       	ldi	r24, 0x3F	; 63
+  c8:	9c e9       	ldi	r25, 0x9C	; 156
+  ca:	01 97       	sbiw	r24, 0x01	; 1
+  cc:	f1 f7       	brne	.-4      	; 0xca <Eep_Write+0x50>
+  ce:	00 c0       	rjmp	.+0      	; 0xd0 <Eep_Write+0x56>
+  d0:	00 00       	nop
+		  return E_NOT_OK;
+		  
+				_delay_ms(10);
+				++EepromAddress;
+				--Length;
+  d2:	21 97       	sbiw	r28, 0x01	; 1
+	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
+	    return E_NOT_OK;
+	    
+	    //write byte to eeprom
+		
+			while( Length!=0)
+  d4:	81 f7       	brne	.-32     	; 0xb6 <Eep_Write+0x3c>
+				++EepromAddress;
+				--Length;
+			}
+		
+	
+	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
+  d6:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+  da:	88 32       	cpi	r24, 0x28	; 40
+  dc:	61 f4       	brne	.+24     	; 0xf6 <Eep_Write+0x7c>
+	    return E_NOT_OK;
+	    
+	    TWI_Stop();
+  de:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <TWI_Stop>
+	    
+	    return E_OK;
+  e2:	80 e0       	ldi	r24, 0x00	; 0
+  e4:	09 c0       	rjmp	.+18     	; 0xf8 <Eep_Write+0x7e>
+
+Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBufferPtr, Eep_LengthType Length )
+{
+	    TWI_Start();
+	    if (TWI_GetStatus() != TW_START)
+	    return E_NOT_OK;
+  e6:	81 e0       	ldi	r24, 0x01	; 1
+  e8:	07 c0       	rjmp	.+14     	; 0xf8 <Eep_Write+0x7e>
+	    
+	    //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+	    TWI_Write((uint8)(0xA0 | ((EepromAddress & 0x0700)>>7)));
+	    if (TWI_GetStatus() != TW_MT_SLA_W_ACK)
+	    return E_NOT_OK;
+  ea:	81 e0       	ldi	r24, 0x01	; 1
+  ec:	05 c0       	rjmp	.+10     	; 0xf8 <Eep_Write+0x7e>
+	    
+	    //send the required location address
+	    TWI_Write((uint8)(EepromAddress));
+	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
+	    return E_NOT_OK;
+  ee:	81 e0       	ldi	r24, 0x01	; 1
+  f0:	03 c0       	rjmp	.+6      	; 0xf8 <Eep_Write+0x7e>
+		
+			while( Length!=0)
+			{
+	      TWI_Write(*DataBufferPtr);
+		  if (TWI_GetStatus() != TW_MT_DATA_ACK)
+		  return E_NOT_OK;
+  f2:	81 e0       	ldi	r24, 0x01	; 1
+  f4:	01 c0       	rjmp	.+2      	; 0xf8 <Eep_Write+0x7e>
+				--Length;
+			}
+		
+	
+	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
+	    return E_NOT_OK;
+  f6:	81 e0       	ldi	r24, 0x01	; 1
+	    
+	    TWI_Stop();
+	    
+	    return E_OK;
+	
+}
+  f8:	df 91       	pop	r29
+  fa:	cf 91       	pop	r28
+  fc:	1f 91       	pop	r17
+  fe:	0f 91       	pop	r16
+ 100:	ff 90       	pop	r15
+ 102:	08 95       	ret
+
+00000104 <Eep_Read>:
+
+
+Std_ReturnType Eep_Read( Eep_AddressType EepromAddress, uint8* DataBufferPtr, Eep_LengthType Length )
+{
+ 104:	ef 92       	push	r14
+ 106:	ff 92       	push	r15
+ 108:	0f 93       	push	r16
+ 10a:	1f 93       	push	r17
+ 10c:	cf 93       	push	r28
+ 10e:	c8 2f       	mov	r28, r24
+ 110:	7b 01       	movw	r14, r22
+ 112:	8a 01       	movw	r16, r20
+	 TWI_Start();
+ 114:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <TWI_Start>
+	 if (TWI_GetStatus() != TW_START)
+ 118:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+ 11c:	88 30       	cpi	r24, 0x08	; 8
+ 11e:	c9 f5       	brne	.+114    	; 0x192 <Eep_Read+0x8e>
+	 return E_NOT_OK;
+	 
+	 //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+	 TWI_Write((uint8)((0xA0) | ((EepromAddress & 0x0700)>>7)));
+ 120:	80 ea       	ldi	r24, 0xA0	; 160
+ 122:	0e 94 fd 00 	call	0x1fa	; 0x1fa <TWI_Write>
+	 if (TWI_GetStatus() != TW_MT_SLA_W_ACK)
+ 126:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+ 12a:	88 31       	cpi	r24, 0x18	; 24
+ 12c:	a1 f5       	brne	.+104    	; 0x196 <Eep_Read+0x92>
+	 return E_NOT_OK;
+	 
+	 //send the required location address
+	 TWI_Write((uint8)(EepromAddress));
+ 12e:	8c 2f       	mov	r24, r28
+ 130:	0e 94 fd 00 	call	0x1fa	; 0x1fa <TWI_Write>
+	 if (TWI_GetStatus() != TW_MT_DATA_ACK)
+ 134:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+ 138:	88 32       	cpi	r24, 0x28	; 40
+ 13a:	79 f5       	brne	.+94     	; 0x19a <Eep_Read+0x96>
+	 return E_NOT_OK;
+	 
+	 //send a repeated start
+	 TWI_Start();
+ 13c:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <TWI_Start>
+	 if (TWI_GetStatus() != TW_REP_START)
+ 140:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+ 144:	80 31       	cpi	r24, 0x10	; 16
+ 146:	59 f5       	brne	.+86     	; 0x19e <Eep_Read+0x9a>
+	 return E_NOT_OK;
+	 
+	 //write the device address and so we need to get A8 A9 A10 address bits and R/W=1 (Read)
+	 TWI_Write((uint8)((0xA0) | ((EepromAddress & 0x0700)>>7) | 1));
+ 148:	81 ea       	ldi	r24, 0xA1	; 161
+ 14a:	0e 94 fd 00 	call	0x1fa	; 0x1fa <TWI_Write>
+	 if (TWI_GetStatus() != TW_MT_SLA_R_ACK)
+ 14e:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+ 152:	80 34       	cpi	r24, 0x40	; 64
+ 154:	31 f5       	brne	.+76     	; 0x1a2 <Eep_Read+0x9e>
+	 return E_NOT_OK;
+	 
+			while( Length!=0)
+ 156:	01 15       	cp	r16, r1
+ 158:	11 05       	cpc	r17, r1
+ 15a:	b9 f0       	breq	.+46     	; 0x18a <Eep_Read+0x86>
+ 15c:	8f e3       	ldi	r24, 0x3F	; 63
+ 15e:	9c e9       	ldi	r25, 0x9C	; 156
+ 160:	01 97       	sbiw	r24, 0x01	; 1
+ 162:	f1 f7       	brne	.-4      	; 0x160 <Eep_Read+0x5c>
+ 164:	00 c0       	rjmp	.+0      	; 0x166 <Eep_Read+0x62>
+ 166:	00 00       	nop
+	 			{
+		 			_delay_ms(10);
+	         *DataBufferPtr= TWI_ReadWithNACK();
+ 168:	0e 94 04 01 	call	0x208	; 0x208 <TWI_ReadWithNACK>
+ 16c:	f7 01       	movw	r30, r14
+ 16e:	80 83       	st	Z, r24
+ 170:	8f e3       	ldi	r24, 0x3F	; 63
+ 172:	9c e9       	ldi	r25, 0x9C	; 156
+ 174:	01 97       	sbiw	r24, 0x01	; 1
+ 176:	f1 f7       	brne	.-4      	; 0x174 <Eep_Read+0x70>
+ 178:	00 c0       	rjmp	.+0      	; 0x17a <Eep_Read+0x76>
+ 17a:	00 00       	nop
+		 			_delay_ms(10);
+	         if (TWI_GetStatus() != TW_MR_DATA_NACK)
+ 17c:	0e 94 0b 01 	call	0x216	; 0x216 <TWI_GetStatus>
+ 180:	88 35       	cpi	r24, 0x58	; 88
+ 182:	89 f4       	brne	.+34     	; 0x1a6 <Eep_Read+0xa2>
+	          return E_NOT_OK;	
+			  ++EepromAddress;				 
+		 			--Length;
+ 184:	01 50       	subi	r16, 0x01	; 1
+ 186:	11 09       	sbc	r17, r1
+	 //write the device address and so we need to get A8 A9 A10 address bits and R/W=1 (Read)
+	 TWI_Write((uint8)((0xA0) | ((EepromAddress & 0x0700)>>7) | 1));
+	 if (TWI_GetStatus() != TW_MT_SLA_R_ACK)
+	 return E_NOT_OK;
+	 
+			while( Length!=0)
+ 188:	49 f7       	brne	.-46     	; 0x15c <Eep_Read+0x58>
+		 			--Length;
+	 			}
+	 		
+
+	 
+	 TWI_Stop();
+ 18a:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <TWI_Stop>
+	 return E_OK;
+ 18e:	80 e0       	ldi	r24, 0x00	; 0
+ 190:	0b c0       	rjmp	.+22     	; 0x1a8 <Eep_Read+0xa4>
+
+Std_ReturnType Eep_Read( Eep_AddressType EepromAddress, uint8* DataBufferPtr, Eep_LengthType Length )
+{
+	 TWI_Start();
+	 if (TWI_GetStatus() != TW_START)
+	 return E_NOT_OK;
+ 192:	81 e0       	ldi	r24, 0x01	; 1
+ 194:	09 c0       	rjmp	.+18     	; 0x1a8 <Eep_Read+0xa4>
+	 
+	 //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+	 TWI_Write((uint8)((0xA0) | ((EepromAddress & 0x0700)>>7)));
+	 if (TWI_GetStatus() != TW_MT_SLA_W_ACK)
+	 return E_NOT_OK;
+ 196:	81 e0       	ldi	r24, 0x01	; 1
+ 198:	07 c0       	rjmp	.+14     	; 0x1a8 <Eep_Read+0xa4>
+	 
+	 //send the required location address
+	 TWI_Write((uint8)(EepromAddress));
+	 if (TWI_GetStatus() != TW_MT_DATA_ACK)
+	 return E_NOT_OK;
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+ 19c:	05 c0       	rjmp	.+10     	; 0x1a8 <Eep_Read+0xa4>
+	 
+	 //send a repeated start
+	 TWI_Start();
+	 if (TWI_GetStatus() != TW_REP_START)
+	 return E_NOT_OK;
+ 19e:	81 e0       	ldi	r24, 0x01	; 1
+ 1a0:	03 c0       	rjmp	.+6      	; 0x1a8 <Eep_Read+0xa4>
+	 
+	 //write the device address and so we need to get A8 A9 A10 address bits and R/W=1 (Read)
+	 TWI_Write((uint8)((0xA0) | ((EepromAddress & 0x0700)>>7) | 1));
+	 if (TWI_GetStatus() != TW_MT_SLA_R_ACK)
+	 return E_NOT_OK;
+ 1a2:	81 e0       	ldi	r24, 0x01	; 1
+ 1a4:	01 c0       	rjmp	.+2      	; 0x1a8 <Eep_Read+0xa4>
+	 			{
+		 			_delay_ms(10);
+	         *DataBufferPtr= TWI_ReadWithNACK();
+		 			_delay_ms(10);
+	         if (TWI_GetStatus() != TW_MR_DATA_NACK)
+	          return E_NOT_OK;	
+ 1a6:	81 e0       	ldi	r24, 0x01	; 1
+	 		
+
+	 
+	 TWI_Stop();
+	 return E_OK;
+ 1a8:	cf 91       	pop	r28
+ 1aa:	1f 91       	pop	r17
+ 1ac:	0f 91       	pop	r16
+ 1ae:	ff 90       	pop	r15
+ 1b0:	ef 90       	pop	r14
+ 1b2:	08 95       	ret
+
+000001b4 <TWI_Init>:
+    TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA);
+    // Wait for TWINT flag set in TWCR Register (data received successfully) 
+    while(BIT_IS_CLEAR(TWCR,TWINT));
+    // Read Data
+    return TWDR;
+}
+ 1b4:	96 b7       	in	r25, 0x36	; 54
+ 1b6:	94 60       	ori	r25, 0x04	; 4
+ 1b8:	96 bf       	out	0x36, r25	; 54
+ 1ba:	81 30       	cpi	r24, 0x01	; 1
+ 1bc:	19 f0       	breq	.+6      	; 0x1c4 <TWI_Init+0x10>
+ 1be:	82 30       	cpi	r24, 0x02	; 2
+ 1c0:	31 f0       	breq	.+12     	; 0x1ce <TWI_Init+0x1a>
+ 1c2:	08 c0       	rjmp	.+16     	; 0x1d4 <TWI_Init+0x20>
+ 1c4:	8d e0       	ldi	r24, 0x0D	; 13
+ 1c6:	80 b9       	out	0x00, r24	; 0
+ 1c8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ca:	81 b9       	out	0x01, r24	; 1
+ 1cc:	03 c0       	rjmp	.+6      	; 0x1d4 <TWI_Init+0x20>
+ 1ce:	87 e0       	ldi	r24, 0x07	; 7
+ 1d0:	80 b9       	out	0x00, r24	; 0
+ 1d2:	11 b8       	out	0x01, r1	; 1
+ 1d4:	22 b9       	out	0x02, r18	; 2
+ 1d6:	17 98       	cbi	0x02, 7	; 2
+ 1d8:	41 11       	cpse	r20, r1
+ 1da:	10 9a       	sbi	0x02, 0	; 2
+ 1dc:	66 23       	and	r22, r22
+ 1de:	19 f0       	breq	.+6      	; 0x1e6 <TWI_Init+0x32>
+ 1e0:	86 b7       	in	r24, 0x36	; 54
+ 1e2:	80 64       	ori	r24, 0x40	; 64
+ 1e4:	86 bf       	out	0x36, r24	; 54
+ 1e6:	08 95       	ret
+
+000001e8 <TWI_Start>:
+ 1e8:	84 ea       	ldi	r24, 0xA4	; 164
+ 1ea:	86 bf       	out	0x36, r24	; 54
+ 1ec:	06 b6       	in	r0, 0x36	; 54
+ 1ee:	07 fe       	sbrs	r0, 7
+ 1f0:	fd cf       	rjmp	.-6      	; 0x1ec <TWI_Start+0x4>
+ 1f2:	08 95       	ret
+
+000001f4 <TWI_Stop>:
+ 1f4:	84 e9       	ldi	r24, 0x94	; 148
+ 1f6:	86 bf       	out	0x36, r24	; 54
+ 1f8:	08 95       	ret
+
+000001fa <TWI_Write>:
+ 1fa:	83 b9       	out	0x03, r24	; 3
+ 1fc:	84 e8       	ldi	r24, 0x84	; 132
+ 1fe:	86 bf       	out	0x36, r24	; 54
+ 200:	06 b6       	in	r0, 0x36	; 54
+ 202:	07 fe       	sbrs	r0, 7
+ 204:	fd cf       	rjmp	.-6      	; 0x200 <TWI_Write+0x6>
+ 206:	08 95       	ret
+
+00000208 <TWI_ReadWithNACK>:
+{
+	/* 
+	 * Clear the TWINT flag before reading the data TWINT=1
+	 * Enable TWI Module TWEN=1 
+	 */
+    TWCR = (1 << TWINT) | (1 << TWEN);
+ 208:	84 e8       	ldi	r24, 0x84	; 132
+ 20a:	86 bf       	out	0x36, r24	; 54
+    // Wait for TWINT flag set in TWCR Register (data received successfully) 
+    while(BIT_IS_CLEAR(TWCR,TWINT));
+ 20c:	06 b6       	in	r0, 0x36	; 54
+ 20e:	07 fe       	sbrs	r0, 7
+ 210:	fd cf       	rjmp	.-6      	; 0x20c <TWI_ReadWithNACK+0x4>
+    // Read Data
+    return TWDR;
+ 212:	83 b1       	in	r24, 0x03	; 3
+}
+ 214:	08 95       	ret
+
+00000216 <TWI_GetStatus>:
+
+uint8 TWI_GetStatus(void)
+{
+    uint8 status;
+    status = TWSR & 0xF8; //masking to eliminate first 3 bits 
+ 216:	81 b1       	in	r24, 0x01	; 1
+    return status;
+}
+ 218:	88 7f       	andi	r24, 0xF8	; 248
+ 21a:	08 95       	ret
+
+0000021c <main>:
+#include <avr/io.h>
+#include "EEPROM.h"
+#include <util/delay.h>
+
+int main(void)
+{
+ 21c:	cf 93       	push	r28
+ 21e:	df 93       	push	r29
+ 220:	1f 92       	push	r1
+ 222:	cd b7       	in	r28, 0x3d	; 61
+ 224:	de b7       	in	r29, 0x3e	; 62
+ uint8 val = 0;
+ 226:	19 82       	std	Y+1, r1	; 0x01
+	DDRD  = 0xFF;
+ 228:	8f ef       	ldi	r24, 0xFF	; 255
+ 22a:	81 bb       	out	0x11, r24	; 17
+	    Eep_Init();
+ 22c:	0e 94 36 00 	call	0x6c	; 0x6c <Eep_Init>
+		Eep_Write(1,0xE0,1);
+ 230:	41 e0       	ldi	r20, 0x01	; 1
+ 232:	50 e0       	ldi	r21, 0x00	; 0
+ 234:	60 ee       	ldi	r22, 0xE0	; 224
+ 236:	70 e0       	ldi	r23, 0x00	; 0
+ 238:	81 e0       	ldi	r24, 0x01	; 1
+ 23a:	0e 94 3d 00 	call	0x7a	; 0x7a <Eep_Write>
+ 23e:	8f e3       	ldi	r24, 0x3F	; 63
+ 240:	9c e9       	ldi	r25, 0x9C	; 156
+ 242:	01 97       	sbiw	r24, 0x01	; 1
+ 244:	f1 f7       	brne	.-4      	; 0x242 <main+0x26>
+ 246:	00 c0       	rjmp	.+0      	; 0x248 <main+0x2c>
+ 248:	00 00       	nop
+		_delay_ms(10);
+		Eep_Read(1,&val ,1);
+ 24a:	41 e0       	ldi	r20, 0x01	; 1
+ 24c:	50 e0       	ldi	r21, 0x00	; 0
+ 24e:	be 01       	movw	r22, r28
+ 250:	6f 5f       	subi	r22, 0xFF	; 255
+ 252:	7f 4f       	sbci	r23, 0xFF	; 255
+ 254:	81 e0       	ldi	r24, 0x01	; 1
+ 256:	0e 94 82 00 	call	0x104	; 0x104 <Eep_Read>
+ 25a:	8f e3       	ldi	r24, 0x3F	; 63
+ 25c:	9c e9       	ldi	r25, 0x9C	; 156
+ 25e:	01 97       	sbiw	r24, 0x01	; 1
+ 260:	f1 f7       	brne	.-4      	; 0x25e <main+0x42>
+ 262:	00 c0       	rjmp	.+0      	; 0x264 <main+0x48>
+ 264:	00 00       	nop
+		_delay_ms(10);
+	while(1)
+	{
+		PORTD=val;
+ 266:	89 81       	ldd	r24, Y+1	; 0x01
+ 268:	82 bb       	out	0x12, r24	; 18
+ 26a:	fd cf       	rjmp	.-6      	; 0x266 <main+0x4a>
+
+0000026c <_exit>:
+ 26c:	f8 94       	cli
+
+0000026e <__stop_program>:
+ 26e:	ff cf       	rjmp	.-2      	; 0x26e <__stop_program>
