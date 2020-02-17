@@ -7,14 +7,14 @@
 int main(void)
 {
 	LCD_int();
- uint8 val = '9';
- uint8 x = 'A';
+ uint8 val = 0;
+ uint8 x ='m';
 
 	  DDRD_REG  = 0xFF;
 	    Eep_Init();
-		Eep_Write(0x0001,&x/*,2)*/);
+		Eep_Write(0x0000,&x,2);
 		_delay_ms(10);
-		Eep_Read(0x0001,&val/*,2*/);
+		Eep_Read(0x0000,&val,2);
 		
 	LCD_Clear();	
 	while(1)

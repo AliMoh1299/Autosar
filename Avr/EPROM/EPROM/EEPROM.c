@@ -8,7 +8,7 @@ void Eep_Init( /*const Eep_ConfigType* ConfigPtr*/void )
 
 
 
-Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBufferPtr/*, Eep_LengthType Length*/ )
+Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBufferPtr, Eep_LengthType Length )
 {
 	    TWI_Start();
 	    if (TWI_GetStatus() != TW_START)
@@ -18,7 +18,8 @@ Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBuffer
 	    TWI_Write((uint8)(0xA0 | ((EepromAddress & 0x0700)>>7)));
 	    if (TWI_GetStatus() != TW_MT_SLA_W_ACK)
 	   { return E_NOT_OK; }
-	    
+      while(Length!=0)
+	  {	    
 	    //send the required location address
 	    TWI_Write((uint8)(EepromAddress));
 	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
@@ -34,7 +35,9 @@ Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBuffer
 	
 	    if (TWI_GetStatus() != TW_MT_DATA_ACK)
 	   { return E_NOT_OK; }
-	    
+		EepromAddress++; 
+	   Length--;
+	   }
 	    TWI_Stop();
 	    
 	    return E_OK;
@@ -42,7 +45,7 @@ Std_ReturnType Eep_Write( Eep_AddressType EepromAddress, const uint8* DataBuffer
 }
 
 
-Std_ReturnType Eep_Read( Eep_AddressType EepromAddress, uint8* DataBufferPtr/*, Eep_LengthType Length*/ )
+Std_ReturnType Eep_Read( Eep_AddressType EepromAddress, uint8* DataBufferPtr, Eep_LengthType Length )
 {
 	 TWI_Start();
 	 if (TWI_GetStatus() != TW_START)
