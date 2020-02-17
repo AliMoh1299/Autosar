@@ -902,8 +902,8 @@ int main(void)
  4bc:	81 bb       	out	0x11, r24	; 17
 	    Eep_Init();
  4be:	0e 94 c8 00 	call	0x190	; 0x190 <Eep_Init>
-		Eep_Write(0x0000,&x,2);
- 4c2:	42 e0       	ldi	r20, 0x02	; 2
+		Eep_Write(0x0000,&x,1);
+ 4c2:	41 e0       	ldi	r20, 0x01	; 1
  4c4:	50 e0       	ldi	r21, 0x00	; 0
  4c6:	be 01       	movw	r22, r28
  4c8:	6e 5f       	subi	r22, 0xFE	; 254
@@ -923,8 +923,8 @@ int main(void)
  4da:	00 c0       	rjmp	.+0      	; 0x4dc <main+0x36>
  4dc:	00 00       	nop
 		_delay_ms(10);
-		Eep_Read(0x0000,&val,2);
- 4de:	42 e0       	ldi	r20, 0x02	; 2
+		Eep_Read(0x0000,&val,1);
+ 4de:	41 e0       	ldi	r20, 0x01	; 1
  4e0:	50 e0       	ldi	r21, 0x00	; 0
  4e2:	be 01       	movw	r22, r28
  4e4:	6f 5f       	subi	r22, 0xFF	; 255

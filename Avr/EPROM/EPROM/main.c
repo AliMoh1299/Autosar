@@ -12,9 +12,9 @@ int main(void)
 
 	  DDRD_REG  = 0xFF;
 	    Eep_Init();
-		Eep_Write(0x0000,&x,2);
+		Eep_Write(0x0000,&x,1);
 		_delay_ms(10);
-		Eep_Read(0x0000,&val,2);
+		Eep_Read(0x0000,&val,1);
 		
 	LCD_Clear();	
 	while(1)
