@@ -15,7 +15,7 @@ typedef struct
   volatile uint32  CC; 
 }Spi_ConfigType;
 
-typedef uint16 Spi_DataBufferType;
+typedef uint8 Spi_DataBufferType;
 typedef uint16 Spi_NumberOfDataType;
 typedef uint8 Spi_ChannelType;
 
