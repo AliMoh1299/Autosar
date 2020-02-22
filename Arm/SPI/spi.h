@@ -9,4 +9,4 @@
 
 void Spi_Init( void );
 void Spi_WriteIB(  Spi_DataBufferType* DataBufferPtr );
-uint16 Spi_ReadIB( void );
+uint8 Spi_ReadIB( void );

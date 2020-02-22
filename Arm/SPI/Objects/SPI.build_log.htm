@@ -27,23 +27,17 @@ Project File Date:  02/22/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling spi.c...
-STD_Types.h(26): warning:  #1-D: last line of file ends without a newline
-  #endif /* STD_TYPES_H_ */
-bit_math.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif /* BIT_MATH_H_ */
-spi.c(36): warning:  #1-D: last line of file ends without a newline
-  }
-spi.c: 3 warnings, 0 errors
 compiling main.c...
 STD_Types.h(26): warning:  #1-D: last line of file ends without a newline
   #endif /* STD_TYPES_H_ */
 bit_math.h(10): warning:  #1-D: last line of file ends without a newline
   #endif /* BIT_MATH_H_ */
-main.c: 2 warnings, 0 errors
+main.c(13): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "Spi_DataBufferType *"
+  Spi_WriteIB(&x);
+main.c: 3 warnings, 0 errors
 linking...
 Program Size: Code=1176 RO-data=16 RW-data=0 ZI-data=352  
-".\Objects\SPI.axf" - 0 Error(s), 5 Warning(s).
+".\Objects\SPI.axf" - 0 Error(s), 3 Warning(s).
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

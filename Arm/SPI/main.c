@@ -3,13 +3,14 @@
 
 int main()
 {
+uint8 x=5;
 Spi_Init();
-uint16 x='5';
+
 while(1)
 { 
-CLR_BIT(GPIOB->DATA,5);
-	Spi_WriteIB(&x);
-SET_BIT(GPIOB->DATA,5);
+GPIOB->DATA &=~(1<<5); // Begin Trans 
+Spi_WriteIB(&x);
+GPIOB->DATA |=(1<<5);  // End Trans
 }
 	
 }
