@@ -1,36 +1,37 @@
-#include "spi.h"
-/* N3ml GPIO5 As Output 34an Nt7akm Fl Signal el Hnb3tha */
-void Spi_Init(  )
+#include "TM4C123GH6PM.h"
+#include "spi_types.h"
+void Spi_InitAsMaster( void )
 {
-	SYSCTL->RCGCSSI=(1<<2);                        /*  To Enable Clock Gate MOD 2               */
-	SYSCTL->RCGCGPIO=(1<<1);                       /*  To Enable Clock Gate PORTB               */	
-	GPIOB->AFSEL|=(1<<4)|(1<<6)|(1<<7);            /* GPIOB ALTER. FUNC.                        */
-	GPIOB->AFSEL &=~(1<<5);
-	GPIOB->DIR|=(1<<5);
-	GPIOB->PCTL|=(2<<16)|(2<<20)|(2<<24)|(2<<28);  /* SSI Signal IN PORTB                       */
-	GPIOB->DEN|=(1<<4)|(1<<5)|(1<<6)|(1<<7);       /* Dig. Enable                               */
-	CLR_BIT(SSI2->CR1,SSE);                        /*  Turn Off Synchronous Serial Port Enable  */
-	SSI2->CR1=0x1;                                 /*  Confg. As Master                         */
-	SSI2->CC=0x0000;                               /*  System clock                             */
-	SSI2->CPSR=4;                                  /*  Clock Prescale Divisor                   */
-  SSI2->CR0=(0x07<<0);                            /*  8-bit data First                        */
-	SET_BIT(SSI2->CR1,SSE);                        /*  Turn ON Synchronous Serial Port Enable   */
+	SYSCTL->RCGCSSI|=(1<<0);                                          /*	 SSI0 Enable       */
+	SYSCTL->RCGCGPIO|=(1<<0);                                        /*	  GPIOA Enable      */ 
+	GPIOA->AFSEL|=(1<<2)|(1<<3)|(1<<4)|(1<<5);                      /*	 ALTER. FUN        */
+	GPIOA->PCTL|=(1<<2)|(1<<3)|(1<<4)|(1<<5);                      /*	  P.Contro          */
+	GPIOA->DEN|=(1<<2)|(1<<3)|(1<<4)|(1<<5);                      /*	 D.Enable          */
+	GPIOA->PUR|=(1<<2)|(1<<3)|(1<<4)|(1<<5);                     /*	  Pull UP           */
+ 	GPIOA->DIR|=(1<<3);                                         /*   FSS DIR           */
+	SSI0->CR1&=~(1<<SSE);                                      /*	  Disable  SSE      */                  
+	SSI0->CR1&=~(1<<2);  														 		      /*	 Work As Master    */
+	SSI0->CC=0x0;     															         /*	  SYSTEM CLOCK      */
+	SSI0->CPSR=4;   													 			        /*	 PRESCALER         */
+	SSI0->CR0&=0x00FF; 																     /*	  SCR               */
+	SSI0->CR0&=(1<<7);    															  /*	 SPH               */
+	SSI0->CR0&=(1<<6); 																   /*	  SPO               */
+  SSI0->CR0&=(1<<4);                                  /*	 SPI ON            */
+	SSI0->CR0&=(1<<5);                                 /*	  SPI ON            */
+	SSI0->CR0|=0x7;                                   /*	 Data Size 8       */
+	SSI0->CR1|=(1<<0);	                             /*  LOOP BACK          */
+	SSI0->CR1|=(1<<SSE);                            /*  Enable  SSE        */ 
+	//  END OF TRANS. & LOOP BACK   IN CR1  
 }
 
-void  Spi_WriteIB(  Spi_DataBufferType* DataBufferPtr )
+void Spi_WriteIB(  Spi_DataBufferType* DataBufferPtr )
 {
-
-SSI2->DR= *DataBufferPtr;
-while((SSI2->SR & (1<<0))==0);
-
-}
-
-
-uint8 Spi_ReadIB()
-{
-	uint8 DataBufferPointer;
-while((SSI2->SR & (1<<2))==0);
-DataBufferPointer=SSI2->DR;
-	return DataBufferPointer;
-	
+GPIOA->DATA|=(1<<3);  //Make FSS Pulse
+for(int i = 0 ; i<60 ; i++){}		
+GPIOA->DATA&=~(1<<3);	 //Make FSS Pulse
+SSI0->DR=*DataBufferPtr;
+while(!(SSI0->SR & (1<<0))){}	
+GPIOA->DATA|=(1<<3); //Make FSS Pulse	
+for(int i = 0 ; i<60 ; i++){}			
+GPIOA->DATA&=~(1<<3);	//Make FSS Pulse	
 }

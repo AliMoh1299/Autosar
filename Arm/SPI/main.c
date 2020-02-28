@@ -3,14 +3,15 @@
 
 int main()
 {
-uint8 x=5;
-Spi_Init();
-
+	Spi_InitAsMaster();
+uint8 x;
 while(1)
-{ 
-GPIOB->DATA &=~(1<<5); // Begin Trans 
+{
+x=1;	
 Spi_WriteIB(&x);
-GPIOB->DATA |=(1<<5);  // End Trans
-}
-	
+for(int i = 0 ; i<10000 ; i++){}	
+x=9;	
+Spi_WriteIB(&x);
+for(int i = 0 ; i<10000 ; i++){}	
+}	
 }

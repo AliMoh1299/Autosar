@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\SPI.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\SPI.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Feb 22 20:36:13 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Feb 28 10:30:05 2020
 <BR><P>
 <H3>Maximum Stack Usage =          8 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -222,19 +222,19 @@ Global Symbols
 
 <P><STRONG><a name="[45]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1a]"></a>Spi_Init</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, spi.o(i.Spi_Init))
+<P><STRONG><a name="[1a]"></a>Spi_InitAsMaster</STRONG> (Thumb, 214 bytes, Stack size 0 bytes, spi.o(i.Spi_InitAsMaster))
 <BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1b]"></a>Spi_WriteIB</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, spi.o(i.Spi_WriteIB))
+<P><STRONG><a name="[1b]"></a>Spi_WriteIB</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, spi.o(i.Spi_WriteIB))
 <BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[11]"></a>main</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(i.main))
+<P><STRONG><a name="[11]"></a>main</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = main
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spi_WriteIB
-<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spi_Init
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spi_InitAsMaster
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>

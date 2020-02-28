@@ -7,6 +7,7 @@
 
 
 
-void Spi_Init(  );
+void Spi_InitAsMaster( void );
+void Spi_InitAsSlave( void );
 void Spi_WriteIB(  Spi_DataBufferType* DataBufferPtr );
-uint8 Spi_ReadIB( void );
+void Spi_ReadIB(Spi_DataBufferType* DataBufferPointer);

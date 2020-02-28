@@ -1,5 +1,4 @@
 .\objects\spi.o: spi.c
-.\objects\spi.o: spi.h
 .\objects\spi.o: C:\Keil_v5\ARM\INC\TI\TM4C123\TM4C123GH6PM.h
 .\objects\spi.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
 .\objects\spi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -9,4 +8,3 @@
 .\objects\spi.o: C:\Keil_v5\ARM\INC\TI\TM4C123\system_TM4C123.h
 .\objects\spi.o: spi_types.h
 .\objects\spi.o: STD_Types.h
-.\objects\spi.o: bit_math.h
