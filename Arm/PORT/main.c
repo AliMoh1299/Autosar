@@ -1,13 +1,18 @@
 #include "port.h"
+#include "dio.h"
 
 int main()
 { 
-Port_Init(GPIOF);
-Port_SetPinDirection(Dio_Channel_F3,PORT_PIN_OUT);
+SET_BIT(SYSCTL->RCGC2,5);	
+uint32	Delay=SYSCTL->RCGC2;	
+Port_Init(&Config);
+		
 
 	while(1)
 	{
-		GPIOF->DATA=0b01110;
+Dio_WriteChannel(Dio_Channel_F1,STD_high);
+Dio_WriteChannel(Dio_Channel_F2,STD_high);
+Dio_WriteChannel(Dio_Channel_F3,STD_high);
 	}
 return 0;
 }

@@ -442,11 +442,6 @@
               <FilePath>.\STD_Types.h</FilePath>
             </File>
             <File>
-              <FileName>port_types.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\port_types.h</FilePath>
-            </File>
-            <File>
               <FileName>port.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\port.h</FilePath>
@@ -460,6 +455,16 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>dio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dio.c</FilePath>
+            </File>
+            <File>
+              <FileName>dio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dio.h</FilePath>
             </File>
           </Files>
         </Group>

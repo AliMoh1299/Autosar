@@ -173,11 +173,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -375,9 +375,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>rvmdk PART_TM4C123GH6PM TARGET_IS_TM4C123_RB1</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\inc;.\driverlib;.\utils;C:\Users\hp\Desktop\CAN\tivaware</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -422,9 +422,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FileName>bit_math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\bit_math.h</FilePath>
             </File>
             <File>
               <FileName>startup_rvmdk.S</FileName>
@@ -432,29 +432,14 @@
               <FilePath>.\startup_rvmdk.S</FilePath>
             </File>
             <File>
-              <FileName>spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>spi_types.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\spi_types.h</FilePath>
-            </File>
-            <File>
-              <FileName>bit_math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\bit_math.h</FilePath>
-            </File>
-            <File>
               <FileName>STD_Types.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\STD_Types.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>

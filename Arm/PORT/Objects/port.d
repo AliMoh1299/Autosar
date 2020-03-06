@@ -11,3 +11,4 @@
 .\objects\port.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
 .\objects\port.o: C:\Keil_v5\ARM\INC\TI\TM4C123\system_TM4C123.h
 .\objects\port.o: bit_math.h
+.\objects\port.o: dio.h
