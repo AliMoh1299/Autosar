@@ -17,6 +17,7 @@ uint32  AFSEL_R ;//4
 uint32  AMSEL_R ;//5
 uint32  PCTL_R  ;//6
 uint32  DIR_R ;	//7
+uint32  ADCCTL_R; //8	
 }Port_ConfigType;
 
 typedef Dio_ChannelType Port_PinType;
